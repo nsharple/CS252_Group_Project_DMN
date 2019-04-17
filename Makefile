@@ -4,6 +4,6 @@ all: git-commit
 git-commit:
 	git checkout Nolan
 	git add *
-	git commit
+	git commit -m "Commit"
 	git push origin Nolan
 
