@@ -16,30 +16,45 @@
 </head>
 
 
-<body>
-	<!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand text-white" href="#">RunRecordShare</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<script>
+	function includeHTML() {
+		var elements, i, element, file, xhttp;
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="forums.html">Forums</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="find.html">Find Runners</a>
-                </li>
-            </ul>
-            <a id="login-button" class="nav-item nav-link text-light" href="login.html">Login</a>
-            <a id="account-button" class="btn btn-outline-light" role="button" href="create.html">Sign Up</a>
-        </div>
-    </nav>
+		// Loop through each HTML element in the file to be included
+		elements = document.getElementsByTagName("*");
+		for (i = 0; i < elements.length; i++) {
+			element = elements[i];
+
+			file = element.getAttribute("include-html");
+			if (file) {
+
+				// Make an HTTP request using the attribute as the file name
+				xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4) {
+						if (this.status == 200) {element.innerHTML = this.responseText;}
+						if (this.status == 400) {element.innerHTML = "Page not found.";}
+						// Remove the attribute and call this function again
+						element.removeAttribute("include-html");
+						includeHTML();
+					}
+				}
+
+				xhttp.open("GET", file, true);
+				xhttp.send();
+				// Exit the function
+				return;
+			}
+
+		}
+
+	}
+</script>
+
+
+<body>
+
+	<div include-html="navbar_include.html"></div>
 
 	<h1>Login</h1>
 	<h2>Email:</h2>
@@ -49,6 +64,10 @@
 	<a id="attempt-login-button" class="btn btn-primary" href="index.html" role="button">Login</a>
 	<h3>No Account? Sign up now!</h3>
 	<a id="no-account-button" class="btn btn-primary" href="index.html" role="button">Sign Up</a>
+
+	<script>
+	includeHTML();
+	</script>
 
 </body>
 
