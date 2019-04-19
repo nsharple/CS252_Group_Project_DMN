@@ -54,16 +54,24 @@
 
 <body>
 
+	<!-- Navbar -->
 	<div include-html="navbar_include.html"></div>
 
 	<h1>Login</h1>
-	<h2>Email:</h2>
-	
-	<h2>Password:</h2>
-	
-	<a id="attempt-login-button" class="btn btn-primary" href="index.html" role="button">Login</a>
-	<h3>No Account? Sign up now!</h3>
-	<a id="no-account-button" class="btn btn-primary" href="index.html" role="button">Sign Up</a>
+	<form>
+		<div class = "form-group">
+		<label for="inputEmail">Email address</label>
+		<input type="email" class="form-control" id="inputEmail" placeholder="Email">
+		</div>
+		<div class="form-group">
+			<label for="inputPassword">Password</label>
+			<input type="password" class="form-control" id="inputPassword" placeholder="Password">
+		</div>
+		<button type="submit" class="btn btn-primary">Login</button>
+	</form>
+
+	<h4>Don't have an account yet? Sign up now!</h4>
+	<a id="noAccountButton" class="btn btn-primary" href="create.html" role="button">Sign up</a>
 
 	<script>
 	includeHTML();
