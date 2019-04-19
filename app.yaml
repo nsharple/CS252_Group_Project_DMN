@@ -25,6 +25,7 @@ handlers:
 
 - url: /signup
   static_files: www/create.html
+  upload: www/create.html
 
 - url: /(.*)
   static_files: www/\1
