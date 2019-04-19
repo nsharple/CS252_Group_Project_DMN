@@ -7,6 +7,25 @@ handlers:
   static_files: www/index.html
   upload: www/index.html
 
+- url: /forums
+  static_files: www/forums.html
+  upload: www/forums.html
+
+- url: /find
+  static_files: www/find.html
+  upload: www/find.html
+
+- url: /login
+  static_files: www/login.html
+  upload: www/login.html
+
+- url: /create
+  static_files: www/create.html
+  upload: www/create.html
+
+- url: /signup
+  static_files: www/create.html
+
 - url: /(.*)
   static_files: www/\1
   upload: www/(.*)
