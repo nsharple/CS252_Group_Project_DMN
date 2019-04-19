@@ -11,7 +11,7 @@
 		for (i = 0; i < elements.length; i++) {
 			element = elements[i];
 
-			file = element.getAttribute("w3-include-html");
+			file = element.getAttribute("include-html");
 			if (file) {
 
 				// Make an HTTP request using the attribute as the file name
@@ -21,7 +21,7 @@
 						if (this.status == 200) {element.innerHTML = this.responseText;}
 						if (this.status == 400) {element.innerHTML = "Page not found.";}
 						// Remove the attribute and call this function again
-						element.removeAttribute("w3-include-html");
+						element.removeAttribute("include-html");
 						includeHTML();
 					}
 				}
@@ -55,8 +55,7 @@
 
 <body>
 
-	<object data="navbar_include.html">Warning: navbar_include.html could not be loaded</object>
-	<div w3-include-html="navbar_include.html"></div>
+	<div include-html="navbar_include.html"></div>
 	<h1>Hello, world!</h1>
 
 	<script>
