@@ -55,7 +55,13 @@
 <body>
 
 <div include-html="navbar_include.html"></div>
-<h1>Hello, world!</h1>
+<form action="" method="get">
+	<div class = "form-group">
+		<label for="inputZipcode">Zipcode</label>
+		<input type="zipcode" class="form-control" id="inputZipcode" name="zipcode" placeholder="47906">
+	</div>
+	<button type="submit" class="btn btn-primary">Find Nearby Runners!</button>
+</form>
 
 <script>
 includeHTML();
