@@ -12,7 +12,7 @@ def login_attempt(request):
 
 	formData = cgi.FieldStorage()
 	email = formData.getValue('email')
-	return email
+	return format(email)
 
 	if request_json and 'email' in request_json and 'password' in request_json:
 		return request_json['email'] + "\n" + request_json['password']
