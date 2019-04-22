@@ -1,5 +1,3 @@
-import cgi
-
 def login_attempt(request):
 	"""Responds to an HTTP request to sign in to the website.
 	Args:
@@ -9,11 +7,7 @@ def login_attempt(request):
 	"""
 	request_json = request.get_json(silent=True)
 	request_args = request.args
-
-	formData = cgi.FieldStorage()
-	email = formData.getValue('email')
-	return format(email)
-
+	return request_json and 'email' in request_json
 	if request_json and 'email' in request_json and 'password' in request_json:
 		return request_json['email'] + "\n" + request_json['password']
 	elif request_args and 'email' in request_args and 'password' in request_args:
