@@ -5,10 +5,11 @@ def login_attempt(request):
 	Returns:
 		WHAT TO PUT HERE???
 	"""
-	request_json = request.get_json()
-	if request.args and 'email' in request.args and 'password' in request.args:
-		return request.args.get('email') + request.args.get('password')
-	elif request_json and 'email' in request_json:
-		return request_json['email']
+	request_json = request.get_json(silent=True)
+	request_args = request.args
+	if request_json and 'email' in request_json and 'password' in request_json:
+		return request_json['email'] + "\n" + request_json['password']
+	elif request_args and 'email' in request_args and 'password' in request_args:
+		return f'This still works'
 	else:
 		return f'Hello World!'
