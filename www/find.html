@@ -54,28 +54,12 @@
 
 <body>
 
-	<!-- Navbar -->
-	<div include-html="navbar_include.html"></div>
+<div include-html="navbar_include.html"></div>
+<h1>Hello, world!</h1>
 
-	<h1>Login</h1>
-	<form action="https://us-east1-runrecordshare.cloudfunctions.net/login-attempt" method="post">
-		<div class = "form-group">
-		<label for="inputEmail">Email address</label>
-		<input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email">
-		</div>
-		<div class="form-group">
-			<label for="inputPassword">Password</label>
-			<input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
-		</div>
-		<button type="submit" class="btn btn-primary">Login</button>
-	</form>
-
-	<h4>Don't have an account yet? Sign up now!</h4>
-	<a id="noAccountButton" class="btn btn-primary" href="create.html" role="button">Sign up</a>
-
-	<script>
-	includeHTML();
-	</script>
+<script>
+includeHTML();
+</script>
 
 </body>
 
