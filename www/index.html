@@ -38,24 +38,6 @@
 </script>
 
 
-<script>
-	function onSignIn(googleUser) {
-
-		// Useful data for client-side scripts:
-		var profile = googleUser.getBasicProfile();
-		console.log("ID: " + profile.getID());
-		console.log('Full Name: ' + profile.getGivenName());
-		console.log('Family Name: ' + profile.getFamilyName());
-		console.log("Image URL: " + profile.getImageUrl());
-		console.log("Email: " + profile.getEmail());
-
-		// The ID token to pass to the backend:
-		var id_token = googleUser.getAuthResponse().id_token;
-		console.log("ID Token: " + id_token);
-	}
-</script>
-
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -85,7 +67,23 @@
 
 	<script>
 	includeHTML();
-	onSignIn(googleUser);
+	</script>
+
+	<script>
+		function onSignIn(googleUser) {
+
+			// Useful data for client-side scripts:
+			var profile = googleUser.getBasicProfile();
+			console.log("ID: " + profile.getID());
+			console.log('Full Name: ' + profile.getGivenName());
+			console.log('Family Name: ' + profile.getFamilyName());
+			console.log("Image URL: " + profile.getImageUrl());
+			console.log("Email: " + profile.getEmail());
+
+			// The ID token to pass to the backend:
+			var id_token = googleUser.getAuthResponse().id_token;
+			console.log("ID Token: " + id_token);
+		}
 	</script>
 
 </body>
