@@ -38,11 +38,35 @@
 </script>
 
 
+<script>
+	function onSignIn(googleUser) {
+
+		// Useful data for client-side scripts:
+		var profile = googleUser.getBasicProfile();
+		console.log("ID: " + profile.getID());
+		console.log('Full Name: ' + profile.getGivenName());
+		console.log('Family Name: ' + profile.getFamilyName());
+		console.log("Image URL: " + profile.getImageUrl());
+		console.log("Email: " + profile.getEmail());
+
+		// The ID token to pass to the backend:
+		var id_token = googleUser.getAuthResponse().id_token;
+		console.log("ID Token: " + id_token);
+	}
+</script>
+
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+	<!-- Google Signin meta tags -->
+	<meta name="google-signin-scope" content="profile email">
+	<meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+	<!-- Bootstrap stuff -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -56,10 +80,12 @@
 <body>
 
 	<div include-html="navbar_include.html"></div>
-	<h1>Hello, world!</h1>
+
+	<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 
 	<script>
 	includeHTML();
+	onSignIn(googleUser);
 	</script>
 
 </body>
