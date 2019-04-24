@@ -1,19 +1,24 @@
 <!doctype html>
 <html lang="en">
 
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<script>
+	<!-- Google Signin meta tags -->
+	<meta name="google-signin-scope" content="profile email">
+	<meta name="google-signin-client_id" content="16789477210-7hhak27tf126sdm84618trt2f5qlptip.apps.googleusercontent.com">
+
+    <script>
 	function includeHTML() {
 		var elements, i, element, file, xhttp;
-
 		// Loop through each HTML element in the file to be included
 		elements = document.getElementsByTagName("*");
 		for (i = 0; i < elements.length; i++) {
 			element = elements[i];
-
 			file = element.getAttribute("include-html");
 			if (file) {
-
 				// Make an HTTP request using the attribute as the file name
 				xhttp = new XMLHttpRequest();
 				xhttp.onreadystatechange = function() {
@@ -25,19 +30,24 @@
 						includeHTML();
 					}
 				}
-
-				xhttp.open("GET", file, true);
+				xhttp.open("GET", file, false);
 				xhttp.send();
 				// Exit the function
 				return;
 			}
-
 		}
+	}
 
+	function addGoogleScript()
+	{
+	    var script = document.createElement("script");
+	    script.src = "https://apis.google.com/js/platform.js";
+	    script.async = true;
+	    script.defer = true;
+	    document.head.appendChild(script);
 	}
 
 	function onSignIn(googleUser) {
-
 		// Useful data for client-side scripts:
 		var profile = googleUser.getBasicProfile();
 		console.log("ID: " + googleUser.getBasicProfile().getId());
@@ -51,16 +61,6 @@
 		console.log("ID Token: " + id_token);
 	}
 </script>
-
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<!-- Google Signin meta tags -->
-	<meta name="google-signin-scope" content="profile email">
-	<meta name="google-signin-client_id" content="16789477210-7hhak27tf126sdm84618trt2f5qlptip.apps.googleusercontent.com">
 
 	<!-- Bootstrap stuff -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
@@ -84,16 +84,12 @@
 		<div class="row justify-content-center">
 			<p>A place to something something blah blah blah add this later.</p>
 		</div>
-		<div class="row justify-content-center">
-			<div class="g-signin2 nav-item" data-onsuccess="onSignIn"></div>
-		</div>
 	</div>
 
 	<script>
 	includeHTML();
+	addGoogleScript();
 	</script>
-
-	<script src="https://apis.google.com/js/platform.js"></script>
 
 </body>
 
