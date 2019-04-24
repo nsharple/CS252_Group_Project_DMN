@@ -12,13 +12,9 @@ Framework - Bootstrap
 Hosting - Google Cloud Platform
 
 To Do:
-1) Logging in
-2) Posting runs
-3) Databases to set up
-	a) list of users
-	b) friend list for each user?
-	c) list of posts for each user
-	d) forums?
+1) Signing out
+2) User name & profile picture in navbar?
+3) Populate logs
 4) Goals
-5) Find nearby?
-6) Forums?
+5) UI formatting
+6) Coaches?

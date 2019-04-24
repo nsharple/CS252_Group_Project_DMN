@@ -13,15 +13,12 @@
     <script>
 	function includeHTML() {
 		var elements, i, element, file, xhttp;
-
 		// Loop through each HTML element in the file to be included
 		elements = document.getElementsByTagName("*");
 		for (i = 0; i < elements.length; i++) {
 			element = elements[i];
-
 			file = element.getAttribute("include-html");
 			if (file) {
-
 				// Make an HTTP request using the attribute as the file name
 				xhttp = new XMLHttpRequest();
 				xhttp.onreadystatechange = function() {
@@ -33,15 +30,12 @@
 						includeHTML();
 					}
 				}
-
 				xhttp.open("GET", file, false);
 				xhttp.send();
 				// Exit the function
 				return;
 			}
-
 		}
-
 	}
 
 	function addGoogleScript()
@@ -54,7 +48,6 @@
 	}
 
 	function onSignIn(googleUser) {
-
 		// Useful data for client-side scripts:
 		var profile = googleUser.getBasicProfile();
 		console.log("ID: " + googleUser.getBasicProfile().getId());
@@ -145,6 +138,9 @@
 		</div>
 
 	</div>
+
+	<a id="newLogButton" class="btn btn-primary" href="newlog.html" role="button">Input New Log</a>
+	<a id="newGoalButton" class="btn btn-primary" href="newgoal.html" role="button">Input New Goal</a>
 
 	<script>
 	includeHTML();

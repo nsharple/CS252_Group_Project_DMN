@@ -57,7 +57,7 @@
 		console.log("Email: " + profile.getEmail());
 
 		// Set the email value for the form
-		document.getElementById("inputEmail").setAttribute("value", profile.getEmail());
+		document.getElementById("coachEmail").setAttribute("value", profile.getEmail());
 	}
 
 </script>
@@ -81,11 +81,20 @@
 	<!-- New Log Form -->
 	<form action="https://us-east1-runrecordshare.cloudfunctions.net/new-log" autocomplete="on">
 		<div class="form-group">
-			<input type="hidden" class="form-control" id="inputEmail" name="email">
+			<input type="hidden" class="form-control" id="coachEmail" name="coachEmail">
 		</div>
 		<div class="form-group">
-			<label for="inputDate">Date</label>
-			<input type="date" class="form-control" id="inputDate" name="date" required>
+			<label for="inputEmails">Email(s)</label>
+			<input type="email" class="form-control" id="inputEmails" multiple name="email" aria-describedby="emailsHelpText">
+			<small id="emailsHelpText" class="form-text text-muted">Leave this blank if this is a personal goal. Enter a comma separated list of emails if this goal is for other runners.</small>
+		</div>
+		<div class="form-group">
+			<label for="inputType">Goal Type</label>
+			<select class="form-control" id="inputType" name="type">
+		</div>
+		<div class="form-group">
+			<label for="inputStartDate">Start Date</label>
+			<input type="date" class="form-control" id="inputStartDate" name="start_date" required>
 		</div>
 		<div class="form-group">
 			<label for="distance">Distance</label>
