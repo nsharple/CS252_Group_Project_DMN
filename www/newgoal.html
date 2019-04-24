@@ -60,6 +60,51 @@
 		document.getElementById("coachEmail").setAttribute("value", profile.getEmail());
 	}
 
+	function getEarliestDate() {
+		var dateToday = Date();
+		var year = dateToday.getFullYear();
+		var month = dateToday.getMonth() + 1;
+		var day = dateToday.getDate();
+		var formattedDate = year + "-" + month + "-" + day;
+		document.getElementById("inputEndDate").setAttribute("min", formattedDate);
+	}
+
+	function onTypeChange() {
+		var choice = document.getElementById("inputType").value;
+		document.getElementById("goalLabel").innerHTML = choice;
+		if (choice == "Distance") {
+			document.getElementById("inputGoal").setAttribute("name", "distance");
+			document.getElementById("inputGoal").setAttribute("placeholder", "26.2");
+			document.getElementById("inputGoal").setAttribute("pattern", "[0-9]{0,8}.?[0-9]{0,2}");
+			document.getElementById("inputGoal").setAttribute("title", "Number in format: 'XXXXXXXX.XX'");
+
+			document.getElementById("milesLabel").removeAttribute("hidden");
+		}
+		else if (choice == "Time") {
+			document.getElementById("inputGoal").setAttribute("name", "time");
+			document.getElementById("inputGoal").setAttribute("placeholder", "00:20:00");
+			document.getElementById("inputGoal").setAttribute("pattern", "[0-9]{2}:[0-5][0-9]:[0-5][0-9]");
+			document.getElementById("inputGoal").setAttribute("title", "Time in format: 'HH:MM:SS'");
+
+			document.getElementById("milesLabel").setAttribute("hidden", true);
+		}
+		else if (choice == "Number of Runs") {
+			document.getElementById("inputGoal").setAttribute("name", "numRuns");
+			document.getElementById("inputGoal").setAttribute("placeholder", "5");
+			document.getElementById("inputGoal").setAttribute("pattern", "[0-9]{1,10}");
+			document.getElementById("inputGoal").setAttribute("title", "Number of runs at most 10 digits long");
+
+			document.getElementById("milesLabel").setAttribute("hidden", true);
+		}
+	}
+
+	function signOut() {
+		var auth2 = gapi.auth2.getAuthInstance();
+		auth2.signOut().then(function () {
+			console.log('User signed out.');
+		});
+	}
+
 </script>
 
 	<!-- Bootstrap stuff -->
@@ -79,7 +124,7 @@
 	<div include-html="navbar_include.html"></div>
 
 	<!-- New Log Form -->
-	<form action="https://us-east1-runrecordshare.cloudfunctions.net/new-log" autocomplete="on">
+	<form action="https://us-east1-runrecordshare.cloudfunctions.net/new-goal" autocomplete="on">
 		<div class="form-group">
 			<input type="hidden" class="form-control" id="coachEmail" name="coachEmail">
 		</div>
@@ -90,31 +135,31 @@
 		</div>
 		<div class="form-group">
 			<label for="inputType">Goal Type</label>
-			<select class="form-control" id="inputType" name="type">
+			<select class="form-control" id="inputType" name="type" selected="Distance" onchange="onTypeChange()" required>
+				<option value="Distance">Distance</option>
+				<option value="Time">Time</option>
+				<option value="Number of Runs">Number of Runs</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="inputGoal" id="goalLabel">Distance</label>
+			<input type="text" class="form-control" id="inputGoal" onload="onTypeChange()"required>
+			<label for="miles" id="milesLabel">Miles</label>
 		</div>
 		<div class="form-group">
 			<label for="inputStartDate">Start Date</label>
 			<input type="date" class="form-control" id="inputStartDate" name="start_date" required>
 		</div>
 		<div class="form-group">
-			<label for="distance">Distance</label>
-			<input type="text" class="form-control" id="inputDistance" name="distance" placeholder="26.2" pattern="[0-9]{0,8}.?[0-9]{0,2}" title="Number in format: 'XXXXXXXX.XX'">
-			<label for="miles">Miles</label>
-		</div>
-		<div class="form-group">
-			<label for="inputTime">Time</label>
-			<input type="text" class="form-control" id="inputTime" name="time" placeholder="00:20:00" pattern="[0-9]{2}:[0-5][0-9]:[0-5][0-9]" title="Time in format: 'HH:MM:SS'">
-		</div>
-		<div class="form-group">
-			<label for="inputLocation">Location</label>
-			<input type="text" class="form-control" id="inputLocation" name="location" placeholder="Purdue University" maxlength="255" title="255 max characters">
+			<label for="inputEndDate">End Date</label>
+			<input type="date" class="form-control" id="inputEndDate" name="end_date" title="Put an end that is no earlier than today" onload="getEarliestDate()" required>
 		</div>
 		<div class="form-group">
 			<label for="inputNotes">Notes</label>
-			<input type="text" class="form-control" id="inputNotes" name="notes" placeholder="Place any notes from your run here!" maxlength="1000" title="1000 max characters" aria-describedby="notesHelpBlock">
+			<input type="text" class="form-control" id="inputNotes" name="notes" placeholder="Place any notes about your goal here!" maxlength="1000" title="1000 max characters" aria-describedby="notesHelpBlock">
 			<small id="notesHelpBlock" class="form-text text-muted">Your notes may not exceed 1000 characters.</small>
 		</div>
-		<button type="submit" class="btn btn-primary">Submit Log</button>
+		<button type="submit" class="btn btn-primary">Create Goal</button>
 	</form>
 
 	<script>
