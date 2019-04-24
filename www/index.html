@@ -36,7 +36,6 @@
 
 	}
 
-
 	function onSignIn(googleUser) {
 
 		// Useful data for client-side scripts:
@@ -51,7 +50,6 @@
 		var id_token = googleUser.getAuthResponse().id_token;
 		console.log("ID Token: " + id_token);
 	}
-
 </script>
 
 
@@ -81,29 +79,19 @@
 
 	<div include-html="navbar_include.html"></div>
 
-	<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+	<div class="container">
+		<div class="row justify-content-center">
+			<h1>RunRecordShare</h1>
+		</div>
+		<div class="row justify-content-center">
+			<p>A place to something something blah blah blah add this later.</p>
+		</div>
+	</div>
 
 	<script>
 	includeHTML();
 	</script>
 
-<!--	<script>
-		function onSignIn(googleUser) {
-
-			// Useful data for client-side scripts:
-			var profile = googleUser.getBasicProfile();
-			console.log("ID: " + profile.getID());
-			console.log('Full Name: ' + profile.getGivenName());
-			console.log('Family Name: ' + profile.getFamilyName());
-			console.log("Image URL: " + profile.getImageUrl());
-			console.log("Email: " + profile.getEmail());
-
-			// The ID token to pass to the backend:
-			var id_token = googleUser.getAuthResponse().id_token;
-			console.log("ID Token: " + id_token);
-		}
-	</script>
--->
 </body>
 
 </html>

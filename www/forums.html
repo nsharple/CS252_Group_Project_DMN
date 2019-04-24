@@ -1,20 +1,6 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="css/styles.css">
-
-    <title>RunRecordShare</title>
-</head>
-
 
 <script>
 	function includeHTML() {
@@ -49,17 +35,62 @@
 		}
 
 	}
+
+	function onSignIn(googleUser) {
+
+		// Useful data for client-side scripts:
+		var profile = googleUser.getBasicProfile();
+		console.log("ID: " + googleUser.getBasicProfile().getId());
+		console.log('Full Name: ' + profile.getGivenName());
+		console.log('Family Name: ' + profile.getFamilyName());
+		console.log("Image URL: " + profile.getImageUrl());
+		console.log("Email: " + profile.getEmail());
+
+		// The ID token to pass to the backend:
+		var id_token = googleUser.getAuthResponse().id_token;
+		console.log("ID Token: " + id_token);
+	}
 </script>
+
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Google Signin meta tags -->
+	<meta name="google-signin-scope" content="profile email">
+	<meta name="google-signin-client_id" content="16789477210-7hhak27tf126sdm84618trt2f5qlptip.apps.googleusercontent.com">
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+
+	<!-- Bootstrap stuff -->
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/styles.css">
+
+    <title>RunRecordShare</title>
+</head>
 
 
 <body>
 
-<div include-html="navbar_include.html"></div>
-<h1>Hello, world!</h1>
+	<div include-html="navbar_include.html"></div>
 
-<script>
-includeHTML();
-</script>
+	<div class="container">
+		<div class="row justify-content-center">
+			<h1>RunRecordShare</h1>
+		</div>
+		<div class="row justify-content-center">
+			<p>A place to something something blah blah blah add this later.</p>
+		</div>
+	</div>
+
+	<script>
+	includeHTML();
+	</script>
 
 </body>
 
