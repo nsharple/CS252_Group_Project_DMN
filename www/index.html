@@ -1,8 +1,16 @@
 <!doctype html>
 <html lang="en">
 
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<script>
+	<!-- Google Signin meta tags -->
+	<meta name="google-signin-scope" content="profile email">
+	<meta name="google-signin-client_id" content="16789477210-7hhak27tf126sdm84618trt2f5qlptip.apps.googleusercontent.com">
+
+    <script>
 	function includeHTML() {
 		var elements, i, element, file, xhttp;
 
@@ -36,6 +44,15 @@
 
 	}
 
+	function addGoogleScript()
+	{
+	    var script = document.createElement("script");
+	    script.src = "https://apis.google.com/js/platform.js";
+	    script.async = true;
+	    script.defer = true;
+	    document.head.appendChild(script);
+	}
+
 	function onSignIn(googleUser) {
 
 		// Useful data for client-side scripts:
@@ -51,18 +68,6 @@
 		console.log("ID Token: " + id_token);
 	}
 </script>
-
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<!-- Google Signin meta tags -->
-	<meta name="google-signin-scope" content="profile email">
-	<meta name="google-signin-client_id" content="16789477210-7hhak27tf126sdm84618trt2f5qlptip.apps.googleusercontent.com">
-	<script src="https://apis.google.com/js/platform.js" async defer></script>
-
 
 	<!-- Bootstrap stuff -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
@@ -90,6 +95,7 @@
 
 	<script>
 	includeHTML();
+	addGoogleScript();
 	</script>
 
 </body>
