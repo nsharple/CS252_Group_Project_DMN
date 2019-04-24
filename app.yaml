@@ -7,25 +7,17 @@ handlers:
   static_files: www/index.html
   upload: www/index.html
 
-- url: /forums
-  static_files: www/forums.html
-  upload: www/forums.html
+- url: /goals
+  static_files: www/goals.html
+  upload: www/goals.html
 
-- url: /find
-  static_files: www/find.html
-  upload: www/find.html
+- url: /logs
+  static_files: www/logs.html
+  upload: www/logs.html
 
-- url: /login
-  static_files: www/login.html
-  upload: www/login.html
-
-- url: /create
-  static_files: www/create.html
-  upload: www/create.html
-
-- url: /signup
-  static_files: www/create.html
-  upload: www/create.html
+- url: /newlog
+  static_files: www/newlog.html
+  upload: www/newlog.html
 
 - url: /(.*)
   static_files: www/\1
