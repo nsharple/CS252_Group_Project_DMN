@@ -61,8 +61,6 @@
 	<!-- Google Signin meta tags -->
 	<meta name="google-signin-scope" content="profile email">
 	<meta name="google-signin-client_id" content="16789477210-7hhak27tf126sdm84618trt2f5qlptip.apps.googleusercontent.com">
-	<script src="https://apis.google.com/js/platform.js" async defer></script>
-
 
 	<!-- Bootstrap stuff -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
@@ -86,11 +84,16 @@
 		<div class="row justify-content-center">
 			<p>A place to something something blah blah blah add this later.</p>
 		</div>
+		<div class="row justify-content-center">
+			<div class="g-signin2 nav-item" data-onsuccess="onSignIn"></div>
+		</div>
 	</div>
 
 	<script>
 	includeHTML();
 	</script>
+
+	<script src="https://apis.google.com/js/platform.js"></script>
 
 </body>
 

@@ -40,7 +40,6 @@
 
 		// Useful data for client-side scripts:
 		var profile = googleUser.getBasicProfile();
-		console.log("ID: " + googleUser.getBasicProfile().getId());
 		console.log('Full Name: ' + profile.getGivenName());
 		console.log('Family Name: ' + profile.getFamilyName());
 		console.log("Image URL: " + profile.getImageUrl());
@@ -49,6 +48,9 @@
 		// The ID token to pass to the backend:
 		var id_token = googleUser.getAuthResponse().id_token;
 		console.log("ID Token: " + id_token);
+
+		// Set the email value for the form
+		document.getElementById("inputEmail").setAttribute("value", profile.getEmail());
 	}
 </script>
 
@@ -82,6 +84,9 @@
 
 	<!-- New Log Form -->
 	<form action="https://us-east1-runrecordshare.cloudfunctions.net/new-log" autocomplete="on">
+		<div class="form-group">
+			<input type="hidden" class="form-control" id="inputEmail" name="email">
+		</div>
 		<div class="form-group">
 			<label for="inputDate">Date</label>
 			<input type="date" class="form-control" id="inputDate" name="date" required>
