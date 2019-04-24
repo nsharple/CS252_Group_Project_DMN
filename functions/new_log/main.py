@@ -85,52 +85,40 @@ def new_log(request):
         return ""
 
     if request.args and 'distance' in request.args:
-        parameters += ", distance"
-        values += ", "
-        values += request.args.get('distance')
+        distance = request.args.get('distance')
     elif request_json and 'distance' in request_json:
+        distance = request_json['distance']
+    
+    if (distance is not None) and (len(distance) > 0):
         parameters += ", distance"
-        values += ", "
-        values += request_json['distance']
+        values += ", " + distance
 
     if request.args and 'time' in request.args:
-        parameters += ", time"
-        values += ", "
-        values += "\""
-        values += request.args.get('time')
-        values += "\""
+        time = request.args.get('time')
     elif request_json and 'time' in request_json:
+        time = request_json['time']
+
+    if (time is not None) and (len(time) > 0):
         parameters += ", time"
-        values += ", "
-        values += "\""
-        values += request_json['time']
-        values += "\""
+        values += ", \"" + time + "\""
 
     if request.args and 'location' in request.args:
-        parameters += ", location"
-        values += ", "
-        values += "\""
-        values += request.args.get('location')
-        values += "\""
+        location = request.args.get('location')
     elif request_json and 'location' in request_json:
+        location = request_json['location']
+
+    if (location is not None) and (len(location) > 0):
         parameters += ", location"
-        values += ", "
-        values += "\""
-        values += request_json['location']
-        values += "\""
+        values += ", \"" + location + "\""
 
     if request.args and 'notes' in request.args:
-        parameters += ", notes"
-        values += ", "
-        values += "\""
-        values += request.args.get('notes')
-        values += "\""
+        notes = request.args.get('notes')
     elif request_json and 'notes' in request_json:
+        notes = request_json['notes']
+
+    if (notes is not None) and (len(notes) > 0):
         parameters += ", notes"
-        values += ", "
-        values += "\""
-        values += request_json['notes']
-        values += "\""
+        values += ", \"" + notes + "\""
 
     parameters += ")"
 
