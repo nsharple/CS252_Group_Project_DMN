@@ -39,32 +39,17 @@
 
 	function onSignIn(googleUser) {
 
-		var authorize
-		var onGoogleLoad = function() {
-			gapi.load('auth2', function() {
-				authorize = gapi.auth2.init({
-					client_id: '16789477210-7hhak27tf126sdm84618trt2f5qlptip.apps.googleusercontent.com'
-				}).then(function() {
-					if (authorize.isSignedIn.get()) {
+		// Useful data for client-side scripts:
+		var profile = googleUser.getBasicProfile();
+		console.log("ID: " + googleUser.getBasicProfile().getId());
+		console.log('Full Name: ' + profile.getGivenName());
+		console.log('Family Name: ' + profile.getFamilyName());
+		console.log("Image URL: " + profile.getImageUrl());
+		console.log("Email: " + profile.getEmail());
 
-						// Useful data for client-side scripts:
-						var profile = authorize.currentUser.get().getBasicProfile();
-						console.log("ID: " + profile.getID());
-						console.log('Full Name: ' + profile.getGivenName());
-						console.log('Family Name: ' + profile.getFamilyName());
-						console.log("Image URL: " + profile.getImageUrl());
-						console.log("Email: " + profile.getEmail());
-
-						// The ID token to pass to the backend:
-						var id_token = googleUser.getAuthResponse().id_token;
-						console.log("ID Token: " + id_token);
-					}
-					else {
-						console.log("yoooo");
-					}
-				})
-			})
-		}
+		// The ID token to pass to the backend:
+		var id_token = googleUser.getAuthResponse().id_token;
+		console.log("ID Token: " + id_token);
 	}
 
 </script>
