@@ -84,6 +84,7 @@ def new_log(request):
     else:
         return ""
 
+    distance = None
     if request.args and 'distance' in request.args:
         distance = request.args.get('distance')
     elif request_json and 'distance' in request_json:
@@ -93,6 +94,7 @@ def new_log(request):
         parameters += ", distance"
         values += ", " + distance
 
+    time = None
     if request.args and 'time' in request.args:
         time = request.args.get('time')
     elif request_json and 'time' in request_json:
@@ -102,6 +104,7 @@ def new_log(request):
         parameters += ", time"
         values += ", \"" + time + "\""
 
+    location = None
     if request.args and 'location' in request.args:
         location = request.args.get('location')
     elif request_json and 'location' in request_json:
@@ -111,6 +114,7 @@ def new_log(request):
         parameters += ", location"
         values += ", \"" + location + "\""
 
+    notes = None
     if request.args and 'notes' in request.args:
         notes = request.args.get('notes')
     elif request_json and 'notes' in request_json:
