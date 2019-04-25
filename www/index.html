@@ -57,6 +57,34 @@
 		console.log("Email: " + profile.getEmail());
 	}
 
+	function populateLogsList()
+	{
+		var profile, email, logs_list, xhttp;
+
+		//profile = googleUser.getBasicProfile();
+
+		//email = profile.getEmail();
+
+		email = "test"
+
+		logs_list = document.getElementById("logs_list");
+
+		xhttp = new XMLHttpRequest();
+
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4)
+			{
+				if (this.status == 200)
+				{
+					logs_list.innerHTML += this.responseText;
+				}
+			}
+		}
+
+		xhttp.open("GET", "https://us-east1-runrecordshare.cloudfunctions.net/get-logs?email=" + email, true);
+		xhttp.send();
+	}
+
 </script>
 
 	<!-- Bootstrap stuff -->
@@ -318,6 +346,7 @@
 	<script>
 	includeHTML();
 	addGoogleScript();
+	populateLogsList();
 	</script>
 
 	<script>
