@@ -173,7 +173,7 @@ def new_log(request):
 
     values += ")"
 
-    query = "INSERT INTO logs " + parameters + " VALUES " + values + ";"
+    query = "INSERT INTO goals " + parameters + " VALUES " + values + ";"
 
     # Remember to close SQL resources declared while running this function.
     # Keep any declared in global scope (e.g. mysql_conn) for later reuse.
