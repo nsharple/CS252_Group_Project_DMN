@@ -127,7 +127,6 @@ def new_goal(request):
         return ""
 
     distance = None
-
     if request.args and 'distance' in request.args:
         distance = request.args.get('distance')
     elif request_json and 'distance' in request_json:
@@ -137,8 +136,7 @@ def new_goal(request):
         parameters += ", distance"
         values += ", " + distance
 
-    return parameters + " values " + values
-
+    time = None
     if request.args and 'time' in request.args:
         time = request.args.get('time')
     elif request_json and 'time' in request_json:
@@ -148,8 +146,7 @@ def new_goal(request):
         parameters += ", time"
         values += ", \"" + time + "\""
 
-    return values
-
+    nruns = None
     if request.args and 'numRuns' in request.args:
         nruns = request.args.get('numRuns')
     elif request_json and 'numRuns' in request_json:
@@ -159,6 +156,7 @@ def new_goal(request):
         parameters += ", num_runs"
         values += ", \"" + nruns + "\""
 
+    notes = None
     if request.args and 'notes' in request.args:
         notes = request.args.get('notes')
     elif request_json and 'notes' in request_json:
