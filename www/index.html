@@ -47,10 +47,12 @@
 	    document.head.appendChild(script);
 	}
 
+	var profile;
+
 	function onSignIn(googleUser) {
 
 		// Useful data for client-side scripts:
-		var profile = googleUser.getBasicProfile();
+		profile = googleUser.getBasicProfile();
 		console.log('Full Name: ' + profile.getGivenName());
 		console.log('Family Name: ' + profile.getFamilyName());
 		console.log("Image URL: " + profile.getImageUrl());
@@ -59,11 +61,9 @@
 
 	function populateLogsList()
 	{
-		var profile, email, logs_list, xhttp;
+		var email, logs_list, xhttp;
 
-		//profile = googleUser.getBasicProfile();
-
-		//email = profile.getEmail();
+		email = profile.getEmail();
 
 		email = "test"
 
