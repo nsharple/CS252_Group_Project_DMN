@@ -41,13 +41,35 @@
 	function addGoogleScript()
 	{
 	    var script = document.createElement("script");
-	    script.src = "https://apis.google.com/js/platform.js";
+	    script.src = "https://apis.google.com/js/platform.js?onload=init";
 	    script.async = true;
 	    script.defer = true;
 	    document.head.appendChild(script);
 	}
 
-	var email;
+	function populateLogsList(email) {
+		var logs_list, xhttp;
+
+		logs_list = document.getElementById("logs_list");
+
+		xhttp = new XMLHttpRequest();
+
+		xhttp.onreadystatechange = function() {
+
+			if (this.readyState == 4) {
+
+    	 	   if (this.status == 200) {
+	    		    logs_list.innerHTML += this.responseText;
+
+	    	    }
+    	    }
+	    }
+
+        xhttp.open("GET", "https://us-east1-runrecordshare.cloudfunctions.net/get-logs?email=" + email, true);
+        xhttp.send();
+
+	}
+
 
 	function onSignIn(googleUser) {
 
@@ -58,37 +80,13 @@
 		console.log("Image URL: " + profile.getImageUrl());
 		console.log("Email: " + profile.getEmail());
 
-		// Put email in a global variable for later
-		email = profile.getEmail();
-	}
+		// Show sign out button now
+		document.getElementById("signOutButton").removeAttribute("hidden");
+		document.getElementById("signInButton").setAttribute("hidden", true);
 
-	function populateLogsList()
-	{
-		var logs_list, xhttp;
-
-//		if (email == null) {
-//			return;
-//		}
-		console.log(email);
-		email="test";
-
-		logs_list = document.getElementById("logs_list");
-
-		xhttp = new XMLHttpRequest();
-
-		xhttp.onreadystatechange = function()
-		{
-			if (this.readyState == 4)
-			{
-				if (this.status == 200)
-				{
-					logs_list.innerHTML += this.responseText;
-				}
-			}
-		}
-
-		xhttp.open("GET", "https://us-east1-runrecordshare.cloudfunctions.net/get-logs?email=" + email, true);
-		xhttp.send();
+		// Populate logs on sign in
+		var email = profile.getEmail();
+		populateLogsList(email);
 	}
 
 </script>
@@ -315,11 +313,12 @@
 	<script>
 	includeHTML();
 	addGoogleScript();
-	populateLogsList();
 	</script>
 
 	<script>
 		function signOut() {
+			document.getElementById("signOutButton").setAttribute("hidden", true);
+			document.getElementById("signInButton").removeAttribute("hidden");
 			var auth2 = gapi.auth2.getAuthInstance();
 			auth2.signOut().then(function () {
 				console.log('User signed out.');
