@@ -172,6 +172,8 @@ def new_goal(request):
 
     query = "INSERT INTO goals " + parameters + " values " + values + ";"
 
+    return query;
+
     # Remember to close SQL resources declared while running this function.
     # Keep any declared in global scope (e.g. mysql_conn) for later reuse.
 
