@@ -37,7 +37,7 @@ def __get_cursor():
         return mysql_conn.cursor()
 
 
-def new_log(request):
+def new_goal(request):
     global mysql_conn
 
     # Initialize connections lazily, in case SQL access isn't needed for this
