@@ -72,7 +72,7 @@ def get_logs(request):
             result += "<div class=\"list-group-item list-group-item-action py-0\">"
 
 			# Date
-            result += "<div class=\"row\"><div class=\"align-self-center h6 p-4\">"
+            result += "<div class=\"row\"><div class=\"col-md-2 text-center align-self-center h6 p-4\">"
             result += str(row["date"])
 
 			# Distance
