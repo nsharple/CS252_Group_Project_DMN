@@ -70,6 +70,28 @@
 
 	}
 
+	function populateGoalsList(email) {
+		var goals_list, xhttp;
+
+		goals_list = document.getElementById("goals_list");
+
+		xhttp = new XMLHttpRequest();
+
+		xhttp.onreadystatechange = function() {
+
+			if (this.readyState == 4) {
+
+    	 	   if (this.status == 200) {
+	    		    goals_list.innerHTML += this.responseText;
+
+	    	    }
+    	    }
+	    }
+
+        xhttp.open("GET", "https://us-east1-runrecordshare.cloudfunctions.net/get-goals?email=" + email, true);
+        xhttp.send();
+
+	}
 
 	function onSignIn(googleUser) {
 
@@ -88,9 +110,10 @@
 		document.getElementById("newGoalButton").removeAttribute("hidden");
 		document.getElementById("newLogButton").removeAttribute("hidden");
 
-		// Populate logs on sign in
+		// Populate logs and goals on sign in
 		var email = profile.getEmail();
 		populateLogsList(email);
+		populateGoalsList(email);
 	}
 
 </script>
