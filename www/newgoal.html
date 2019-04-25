@@ -61,11 +61,12 @@
 	}
 
 	function getEarliestDate() {
-		var dateToday = Date();
+		var dateToday = new Date();
 		var year = dateToday.getFullYear();
 		var month = dateToday.getMonth() + 1;
 		var day = dateToday.getDate();
-		var formattedDate = year + "-" + month + "-" + day;
+		var formattedDate = year + "-" + month + "-" + day;j
+		console.log(formattedDate);
 		document.getElementById("inputEndDate").setAttribute("min", formattedDate);
 	}
 
@@ -78,15 +79,15 @@
 			document.getElementById("inputGoal").setAttribute("pattern", "[0-9]{0,8}.?[0-9]{0,2}");
 			document.getElementById("inputGoal").setAttribute("title", "Number in format: 'XXXXXXXX.XX'");
 
-			document.getElementById("milesLabel").removeAttribute("hidden");
+			document.getElementById("typeLabel").innerHTML = "Miles";
 		}
 		else if (choice == "Time") {
 			document.getElementById("inputGoal").setAttribute("name", "time");
-			document.getElementById("inputGoal").setAttribute("placeholder", "00:20:00");
-			document.getElementById("inputGoal").setAttribute("pattern", "[0-9]{2}:[0-5][0-9]:[0-5][0-9]");
-			document.getElementById("inputGoal").setAttribute("title", "Time in format: 'HH:MM:SS'");
+			document.getElementById("inputGoal").setAttribute("placeholder", "4");
+			document.getElementById("inputGoal").setAttribute("pattern", "[0-9]{0,8}.?[0-9]{0,2}");
+			document.getElementById("inputGoal").setAttribute("title", "Time in format: 'XXXXXXXX.XX'");
 
-			document.getElementById("milesLabel").setAttribute("hidden", true);
+			document.getElementById("typeLabel").innerHTML = "Hours";
 		}
 		else if (choice == "Number of Runs") {
 			document.getElementById("inputGoal").setAttribute("name", "numRuns");
@@ -94,7 +95,7 @@
 			document.getElementById("inputGoal").setAttribute("pattern", "[0-9]{1,10}");
 			document.getElementById("inputGoal").setAttribute("title", "Number of runs at most 10 digits long");
 
-			document.getElementById("milesLabel").setAttribute("hidden", true);
+			document.getElementById("typeLabel").innerHTML = "Runs";
 		}
 	}
 
@@ -103,6 +104,13 @@
 		auth2.signOut().then(function () {
 			console.log('User signed out.');
 		});
+	}
+
+	function updateCoachEmail() {
+		if (!document.getElementById("inputEmails").value) {
+			document.getElementById("inputEmails").setAttribute("value", document.getElementById("coachEmail").value);
+			document.getElementById("coachEmail").setAttribute("value", "");
+		}
 	}
 
 </script>
@@ -124,7 +132,7 @@
 	<div include-html="navbar_include.html"></div>
 
 	<!-- New Log Form -->
-	<form action="https://us-east1-runrecordshare.cloudfunctions.net/new-goal" autocomplete="on">
+	<form onSubmit="updateCoachEmail()" action="https://us-east1-runrecordshare.cloudfunctions.net/new-goal" autocomplete="on">
 		<div class="form-group">
 			<input type="hidden" class="form-control" id="coachEmail" name="coachEmail">
 		</div>
@@ -143,8 +151,8 @@
 		</div>
 		<div class="form-group">
 			<label for="inputGoal" id="goalLabel">Distance</label>
-			<input type="text" class="form-control" id="inputGoal" onload="onTypeChange()"required>
-			<label for="miles" id="milesLabel">Miles</label>
+			<input type="text" class="form-control" id="inputGoal" required>
+			<label for="miles" id="typeLabel">Miles</label>
 		</div>
 		<div class="form-group">
 			<label for="inputStartDate">Start Date</label>
@@ -152,7 +160,7 @@
 		</div>
 		<div class="form-group">
 			<label for="inputEndDate">End Date</label>
-			<input type="date" class="form-control" id="inputEndDate" name="end_date" title="Put an end that is no earlier than today" onload="getEarliestDate()" required>
+			<input type="date" class="form-control" id="inputEndDate" name="end_date" title="Put an end that is no earlier than today" onclick="getEarliestDate()" required>
 		</div>
 		<div class="form-group">
 			<label for="inputNotes">Notes</label>
