@@ -65,8 +65,11 @@ def get_logs(request):
     query = "SELECT * FROM logs WHERE email='" + email + "';"
     with __get_cursor() as cursor:
         cursor.execute(query)
-        result = "<div class=\"list-group-item list-group-item-action py-0\">"
+        result = ""
         for row in cursor:
+
+            # Header
+            result += "<div class=\"list-group-item list-group-item-action py-0\">"
 
 			# Date
             result += "<div class=\"row\"><div class=\"align-self-center h6 p-4\">"
@@ -90,4 +93,7 @@ def get_logs(request):
 
 			# Rest
             result += "</span></div></div></div></div></div>"
-        return result
+
+    headers = {'Access-Control-Allow-Origin': '*'}
+
+    return (result, 200, headers)
