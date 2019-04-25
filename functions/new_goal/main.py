@@ -144,6 +144,8 @@ def new_goal(request):
         parameters += ", time"
         values += ", \"" + time + "\""
 
+    return values
+
     if request.args and 'numRuns' in request.args:
         nruns = request.args.get('numRuns')
     elif request_json and 'numRuns' in request_json:
