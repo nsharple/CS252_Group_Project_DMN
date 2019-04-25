@@ -76,7 +76,7 @@ def get_logs(request):
             result += str(row["date"])
 
 			# Distance
-            result += "</div><div class=\"col border-left\"<div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">Distance: </span><span>"
+            result += "</div><div class=\"col border-left\"><div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">Distance: </span><span>"
             result += str(row.get('distance')) if str(row.get('distance')) else "-"
 
 			# Time
