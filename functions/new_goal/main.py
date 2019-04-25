@@ -66,6 +66,8 @@ def new_goal(request):
         values += "\""
         values += request_json['email']
         values += "\""
+	else:
+		return ""
 
     if request.args and 'coachEmail' in request.args:
         parameters += ", coach_email"
@@ -79,8 +81,6 @@ def new_goal(request):
         values += "\""
         values += request_json['coachEmail']
         values += "\""
-    else:
-        return ""
 
     if request.args and 'type' in request.args:
         parameters += ", type"
@@ -151,13 +151,13 @@ def new_goal(request):
         parameters += ", time"
         values += ", \"" + time + "\""
 
-    if request.args and 'numruns' in request.args:
-        nruns = request.args.get('numruns')
-    elif request_json and 'numruns' in request_json:
-        nruns = request_json['numruns']
+    if request.args and 'numRuns' in request.args:
+        nruns = request.args.get('numRuns')
+    elif request_json and 'numRuns' in request_json:
+        nruns = request_json['numRuns']
 
     if (nruns is not None) and (len(nruns) > 0):
-        parameters += ", numruns"
+        parameters += ", numRuns"
         values += ", \"" + nruns + "\""
 
     if request.args and 'notes' in request.args:
