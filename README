@@ -12,9 +12,9 @@ Framework - Bootstrap
 Hosting - Google Cloud Platform
 
 To Do:
-1) Signing out
+1) Switch buttons when signing in/out
 2) User name & profile picture in navbar?
-3) Populate logs
-4) Goals
-5) UI formatting
-6) Coaches?
+3) Populate logs (almost there, something wrong though)
+4) Finish getGoals and newGoals cloud functions
+5) Goals you coach in the UI
+6) Deleting logs/goals

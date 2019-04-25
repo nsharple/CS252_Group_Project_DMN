@@ -47,25 +47,28 @@
 	    document.head.appendChild(script);
 	}
 
-	var profile;
+	var email;
 
 	function onSignIn(googleUser) {
 
 		// Useful data for client-side scripts:
-		profile = googleUser.getBasicProfile();
+		var profile = googleUser.getBasicProfile();
 		console.log('Full Name: ' + profile.getGivenName());
 		console.log('Family Name: ' + profile.getFamilyName());
 		console.log("Image URL: " + profile.getImageUrl());
 		console.log("Email: " + profile.getEmail());
+
+		// Put email in a global variable for later
+		email = profile.getEmail();
 	}
 
 	function populateLogsList()
 	{
-		var email, logs_list, xhttp;
+		var logs_list, xhttp;
 
-		email = profile.getEmail();
-
-		email = "test"
+		if (email == null) {
+			return;
+		}
 
 		logs_list = document.getElementById("logs_list");
 
