@@ -77,17 +77,17 @@ def get_goals(request):
             result += "TEMP" #TEMPORARY
 
             # Total Goal
-            goalLabel " ";
+            goalLabel = "";
             result += "</div><div class=\"align-self-center text-center h6\">out of "
             if row.get('type') == 'd':
                 result += row.get('distance')
-                goalLabel = "miles"
+                goalLabel = " miles"
             elif row.get('type') == 't':
                 result += row.get('time')
-                goalLabel = "hours"
+                goalLabel = " hours"
             else:
                 result += row.get('num_runs')
-                goalLabel = "runs"
+                goalLabel = " runs"
             result += goalLabel
 
             # Progress Bar
