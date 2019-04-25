@@ -80,13 +80,13 @@ def get_goals(request):
             goalLabel = "";
             result += "</div><div class=\"align-self-center text-center h6\">out of "
             if row.get('type') == 'd':
-                result += row.get('distance')
+                result += str(row.get('distance'))
                 goalLabel = " miles"
             elif row.get('type') == 't':
-                result += row.get('time')
+                result += str(row.get('time'))
                 goalLabel = " hours"
             else:
-                result += row.get('num_runs')
+                result += str(row.get('num_runs'))
                 goalLabel = " runs"
             result += goalLabel
 
@@ -101,12 +101,12 @@ def get_goals(request):
 
             # Start Date
             result += "<div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">From: </span><span>"
-            result += row.get('start_date')
+            result += str(row.get('start_date'))
             result += "</span></div>"
 
             # End Date
             result += "<div class=\"p-2 px-3\"><span class=\"h6\">To: </span><span>"
-            result += row.get('end_date')
+            result += str(row.get('end_date'))
             result += "</span></div></div>"
 
             # Additional Notes
