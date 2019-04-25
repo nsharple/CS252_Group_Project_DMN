@@ -89,6 +89,8 @@ def new_goal(request):
     else:
         return ""
 
+    return values
+
     if type is not None:
         type_char = type[:1]
     else:
