@@ -65,20 +65,23 @@ def get_logs(request):
     query = "SELECT * FROM logs WHERE email='" + email + "';"
     with __get_cursor() as cursor:
         cursor.execute(query)
-        result = "<div class=\"list-group-item list-group-item-action py-0\">"
+        result = ""
         for row in cursor:
 
+            # Header
+            result += "<div class=\"list-group-item list-group-item-action py-0\">"
+
 			# Date
-            result += "div class=\"row\"><div class=\"align-self-center h6 p-4\">"
-            result += row["date"]
+            result += "<div class=\"row\"><div class=\"align-self-center h6 p-4\">"
+            result += str(row["date"])
 
 			# Distance
-            result += "</div><div class=\"col border-left\"<div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">Distance: </span><span>"
-            result += row.get('distance') if row.get('distance') else "-"
+            result += "</div><div class=\"col border-left\"><div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">Distance: </span><span>"
+            result += str(row.get('distance')) if str(row.get('distance')) else "-"
 
 			# Time
             result += "</span></div></div><div class=\"col p-2 px-3\"><span class=\"h6\">Time: </span><span>"
-            result += row.get('time') if row.get('time') else "-"
+            result += str(row.get('time')) if (row.get('time')) else "-"
 
 			# Location
             result += "</span></div></div><div class=\"row border-bottom\"><div class=\"col p-2 px-3\"><span class=\"h6\">Location: </span><span>"
@@ -90,4 +93,7 @@ def get_logs(request):
 
 			# Rest
             result += "</span></div></div></div></div></div>"
-        return result
+
+    headers = {'Access-Control-Allow-Origin': '*'}
+
+    return (result, 200, headers)
