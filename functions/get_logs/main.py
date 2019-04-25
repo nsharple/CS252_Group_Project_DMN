@@ -107,6 +107,6 @@ def get_logs(request):
 			# Rest
             result += "</span></div></div></div></div></div>"
 
-    headers = {'Access-Control-Allow-Origin': '*'}
+    headers = {'Access-Control-Allow-Origin': 'https://runrecordshare.appspot.com'}
 
     return (result, 200, headers)
