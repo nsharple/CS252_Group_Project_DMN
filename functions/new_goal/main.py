@@ -157,7 +157,7 @@ def new_goal(request):
         nruns = request_json['numRuns']
 
     if (nruns is not None) and (len(nruns) > 0):
-        parameters += ", numRuns"
+        parameters += ", num_runs"
         values += ", \"" + nruns + "\""
 
     if request.args and 'notes' in request.args:

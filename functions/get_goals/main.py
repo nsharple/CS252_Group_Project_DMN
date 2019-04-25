@@ -67,5 +67,55 @@ def get_goals(request):
         cursor.execute(query)
         result = ""
         for row in cursor:
-            result += str(row)
-        return result
+
+            # Header
+            result += "<div class=\"list-group-item list-group-item-action py-0\">"
+
+            # So Far Completed
+            # Need to calculate this from logs between start_date and end_date
+            result += "<div class=\"row\"><div class=\"col-md-2 p-4\"><div class=\"align-self-center text-center h1\">"
+            result += "TEMP" #TEMPORARY
+
+            # Total Goal
+            goalLabel;
+            result += "</div><div class=\"align-self-center text-center h6\">out of "
+            if row.get('type') == 'd':
+                result += row.get('distance')
+                goalLabel = " miles"
+            elif row.get('type') == 't':
+                result += row.get('time')
+                goalLabel = " hours"
+            else:
+                result += row.get('num_runs')
+                goalLabel = " runs"
+            result += goalLabel
+
+            # Progress Bar
+            # Also need to calculate this percentage
+            result += "</div></div><div class=\"col border-left\"><div class=\"row border-bottom\"><div class=\"col p-2 px-3\"><div class=\"progress\">"
+            result += "<div class=\"progress-bar progress-bar-striped bg-success\" role=\"progressbar\" style=\"width: 25%\" aria-valuenow=\""
+            result += "25" #TEMPORARY
+            result += "\" aria-valuemin=\"0\" aria-valuemax=\"100\">"
+            result += "TEMP" #TEMPORARY
+            result += "%</div></div></div></div>"
+
+            # Start Date
+            result += "<div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">From: </span><span>"
+            result += row.get('start_date')
+            result += "</span></div>"
+
+            # End Date
+            result += "<div class=\"p-2 px-3\"><span class=\"h6\">To: </span><span>"
+            result += row.get('end_date')
+            result += "</span></div></div>"
+
+            # Additional Notes
+            result += "<div class=\"row\"><div class=\"col p-2 px-3\"><span class=\"h6\">Additional Notes: </span><span>"
+            result += row.get('notes') if row.get('notes') else "-"
+
+            # Finish
+            result += "</span></div></div></div></div></div>"
+
+    headers = {'Access-Control-Allow-Origin': 'https://runrecordshare.appspot.com'}
+
+    return (result, 200, headers)
