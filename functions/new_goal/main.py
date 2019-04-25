@@ -66,8 +66,8 @@ def new_goal(request):
         values += "\""
         values += request_json['email']
         values += "\""
-	else:
-		return ""
+    else:
+        return ""
 
     if request.args and 'coachEmail' in request.args:
         parameters += ", coach_email"
