@@ -131,7 +131,7 @@ def new_goal(request):
     elif request_json and 'distance' in request_json:
         distance = request_json['distance']
 
-    if (distance is not None) and (len(distance) > 0):
+    if distance and (len(distance) > 0):
         parameters += ", distance"
         values += ", " + distance
 
