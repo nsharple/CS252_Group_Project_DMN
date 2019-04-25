@@ -83,23 +83,20 @@ def new_goal(request):
         values += "\""
 
     if request.args and 'type' in request.args:
-        parameters += ", type"
-        values += ", "
-        if request.args.get('type') == "Distance":
-            values += "d"
-        elif request.args.get('type') == "Time":
-            values += "t"
-        else:
-            values += "n"
+        type = request.args.get('type')
     elif request_json and 'type' in request_json:
+        type = request_json['type']
+    else:
+        return ""
+
+    if type is not None:
+        type_char = type[:1]
+    else:
+        return ""
+
+    if type_char == "D" or type_char == "T" or type_char == "N":
         parameters += ", type"
-        values += ", "
-        if request_json['type'] == "Distance":
-            values += "d"
-        elif request_json['type'] == "Time":
-            values += "t"
-        else:
-            values += "n"
+        values += ", \"" + type_char + "\""
     else:
         return ""
 
@@ -173,7 +170,7 @@ def new_goal(request):
 
     values += ")"
 
-    query = "INSERT INTO goals " + parameters + " VALUES " + values + ";"
+    query = "INSERT INTO goals " + parameters + " values " + values + ";"
 
     # Remember to close SQL resources declared while running this function.
     # Keep any declared in global scope (e.g. mysql_conn) for later reuse.
