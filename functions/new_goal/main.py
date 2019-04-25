@@ -126,12 +126,14 @@ def new_goal(request):
     else:
         return ""
 
+    distance = None
+
     if request.args and 'distance' in request.args:
         distance = request.args.get('distance')
     elif request_json and 'distance' in request_json:
         distance = request_json['distance']
 
-    if distance and (len(distance) > 0):
+    if (distance is not None) and (len(distance) > 0):
         parameters += ", distance"
         values += ", " + distance
 
