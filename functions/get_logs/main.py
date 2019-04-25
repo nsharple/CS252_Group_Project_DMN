@@ -69,7 +69,7 @@ def get_logs(request):
         for row in cursor:
 
 			# Date
-            result += "div class=\"row\"><div class=\"align-self-center h6 p-4\">"
+            result += "<div class=\"row\"><div class=\"align-self-center h6 p-4\">"
             result += str(row["date"])
 
 			# Distance
