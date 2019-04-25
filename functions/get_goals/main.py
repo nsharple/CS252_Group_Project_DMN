@@ -62,7 +62,7 @@ def get_logs(request):
     # Remember to close SQL resources declared while running this function.
     # Keep any declared in global scope (e.g. mysql_conn) for later reuse.
 
-    query = "SELECT * FROM logs WHERE email='" + email + "';"
+    query = "SELECT * FROM goals WHERE email='" + email + "';"
     with __get_cursor() as cursor:
         cursor.execute(query)
         result = ""
