@@ -70,17 +70,23 @@ def new_goal(request):
         return ""
 
     if request.args and 'coachEmail' in request.args:
+        coachEmail = request.args.get('coachEmail')
         parameters += ", coach_email"
         values += ", "
         values += "\""
         values += request.args.get('coachEmail')
         values += "\""
     elif request_json and 'coachEmail' in request_json:
+        coachEmail = request_json['coachEmail']
         parameters += ", coach_email"
         values += ", "
         values += "\""
         values += request_json['coachEmail']
         values += "\""
+
+    if (coachEmail is not None) and (len(coachEmail) > 0):
+        parameters += ", coach_email"
+        values += ", \"" + coachEmail + "\""
 
     if request.args and 'type' in request.args:
         type = request.args.get('type')
@@ -88,8 +94,6 @@ def new_goal(request):
         type = request_json['type']
     else:
         return ""
-
-    return values
 
     if type is not None:
         type_char = type[:1]
@@ -131,6 +135,8 @@ def new_goal(request):
         values += "\""
     else:
         return ""
+
+    return values
 
     if request.args and 'distance' in request.args:
         distance = request.args.get('distance')
