@@ -65,7 +65,29 @@ def get_logs(request):
     query = "SELECT * FROM logs WHERE email='" + email + "';"
     with __get_cursor() as cursor:
         cursor.execute(query)
-        result = ""
+        result = "<div class=\"list-group-item list-group-item-action py-0\">"
         for row in cursor:
-            result += str(row)
+
+			# Date
+            result += "div class=\"row\"><div class=\"align-self-center h6 p-4\">"
+			result += row.get('date')
+
+			# Distance
+			result += "</div><div class=\"col border-left\"<div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">Distance: </span><span>"
+			result += row.get('distance') if row.get('distance') else "-"
+
+			# Time
+			result += "</span></div></div><div class=\"col p-2 px-3\"><span class=\"h6\">Time: </span><span>"
+			result += row.get('time') if row.get('time') else "-"
+
+			# Location
+			result += "</span></div></div><div class=\"row border-bottom\"><div class=\"col p-2 px-3\"><span class=\"h6\">Location: </span><span>"
+			result += row.get('location') if row.get('location') else "-"
+
+			# Additional Notes
+			result += "</span></div></div><div class=\"row\"><div class=\"col p-2 px-3\"><span class=\"h6\">Additional Notes: </span><span>"
+			result += row.get('notes') if row.get('notes') else "-"
+
+			# Rest
+			result += "</span></div></div></div></div></div>"
         return result
