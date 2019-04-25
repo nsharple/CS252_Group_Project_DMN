@@ -84,6 +84,10 @@
 		document.getElementById("signOutButton").removeAttribute("hidden");
 		document.getElementById("signInButton").setAttribute("hidden", true);
 
+		// Show newGoalButton and newLogButton
+		document.getElementById("newGoalButton").removeAttribute("hidden");
+		document.getElementById("newLogButton").removeAttribute("hidden");
+
 		// Populate logs on sign in
 		var email = profile.getEmail();
 		populateLogsList(email);
@@ -190,6 +194,11 @@
 						</div>
 					</div>
 				</div>
+
+
+				<!-- Template for goals begin -->
+
+
 				<div class="list-group-item list-group-item-action py-0">
 					<div class="row">
 						<div class="col-md-2 p-4">
@@ -227,6 +236,15 @@
 						</div>
 					</div>
 				</div>
+
+
+
+
+				<!-- Template end -->
+
+
+
+
 				<div class="list-group-item list-group-item-action py-0">
 					<div class="row">
 						<div class="col-md-2 p-4">
@@ -273,7 +291,7 @@
 				<a id="newLogButton" class="btn btn-primary pull-right" href="newlog.html" role="button"><i class="fa fa-plus"></i></a>
 			</div>
 			<div id="logs_list" class="list-group list-group-flush" style="max-height: 300px; overflow-y: scroll; resize: vertical">
-				<!-- Template
+				<!-- Template for each of user's logs
 				<div class="list-group-item list-group-item-action py-0">
 					<div class="row">
 						<div class="col-md-2 text-center align-self-center h6 p-4">
@@ -317,8 +335,15 @@
 
 	<script>
 		function signOut() {
+
+			// Hide sign out button. Show sign in button.
 			document.getElementById("signOutButton").setAttribute("hidden", true);
 			document.getElementById("signInButton").removeAttribute("hidden");
+
+			// Hide the newGoal and newLog buttons
+			document.getElementById("newGoalButton").setAttribute("hidden", true);
+			document.getElementById("newLogButton").setAttribute("hidden", true);
+
 			var auth2 = gapi.auth2.getAuthInstance();
 			auth2.signOut().then(function () {
 				console.log('User signed out.');
