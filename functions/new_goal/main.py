@@ -126,6 +126,8 @@ def new_goal(request):
     else:
         return ""
 
+    return parameters + " values " + values
+
     if request.args and 'distance' in request.args:
         distance = request.args.get('distance')
     elif request_json and 'distance' in request_json:
