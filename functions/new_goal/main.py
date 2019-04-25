@@ -135,6 +135,8 @@ def new_goal(request):
         parameters += ", distance"
         values += ", " + distance
 
+    return values
+
     if request.args and 'time' in request.args:
         time = request.args.get('time')
     elif request_json and 'time' in request_json:
