@@ -180,3 +180,4 @@ def new_goal(request):
 
     with __get_cursor() as cursor:
         cursor.execute(query)
+
