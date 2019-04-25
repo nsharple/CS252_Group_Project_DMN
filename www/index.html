@@ -71,7 +71,8 @@
 
 		xhttp = new XMLHttpRequest();
 
-		xhttp.onreadystatechange = function() {
+		xhttp.onreadystatechange = function()
+		{
 			if (this.readyState == 4)
 			{
 				if (this.status == 200)
@@ -81,7 +82,7 @@
 			}
 		}
 
-		xhttp.open("GET", "https://us-east1-runrecordshare.cloudfunctions.net/get-logs?email=" + email, true);
+		xhttp.open("GET", "https://us-central1-runrecordshare.cloudfunctions.net/get-logs?email=" + email, true);
 		xhttp.send();
 	}
 
@@ -269,20 +270,10 @@
 				<a id="newLogButton" class="btn btn-primary pull-right" href="newlog.html" role="button"><i class="fa fa-plus"></i></a>
 			</div>
 			<div id="logs_list" class="list-group list-group-flush" style="max-height: 300px; overflow-y: scroll; resize: vertical">
-
-
-
-
-
-				<!-- Nolan here -->
-
-
-
-
-
+				<!-- Template
 				<div class="list-group-item list-group-item-action py-0">
 					<div class="row">
-						<div class="align-self-center h6 p-4">
+						<div class="col-md-2 text-center align-self-center h6 p-4">
 							MM/DD/YYYY
 						</div>
 						<div class="col border-left">
@@ -311,36 +302,9 @@
 						</div>
 					</div>
 				</div>
-
-
-
-
-
-				<!-- Nolan end here -->
-
-
-
-
-
-				<div class="list-group-item list-group-item-action flex-column align-items-start">
-					<div class="d-flex w-100 justify-content-between">
-						<h5 class="mb-1">List group item heading</h5>
-						<small class="text-muted">3 days ago</small>
-					</div>
-					<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-					<small class="text-muted">Donec id elit non mi porta.</small>
-				</div>
-				<div class="list-group-item list-group-item-action flex-column align-items-start">
-					<div class="d-flex w-100 justify-content-between">
-						<h5 class="mb-1">List group item heading</h5>
-						<small class="text-muted">3 days ago</small>
-					</div>
-					<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-					<small class="text-muted">Donec id elit non mi porta.</small>
-				</div>
+				end template -->
 			</div>
 		</div>
-
 	</div>
 
 	<script>
