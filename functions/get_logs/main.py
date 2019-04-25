@@ -80,7 +80,7 @@ def get_logs(request):
             result += str(row.get('distance')) if str(row.get('distance')) else "-"
 
 			# Time
-            result += "</span></div></div><div class=\"col p-2 px-3\"><span class=\"h6\">Time: </span><span>"
+            result += "</span></div><div class=\"col p-2 px-3\"><span class=\"h6\">Time: </span><span>"
             result += str(row.get('time')) if (row.get('time')) else "-"
 
 			# Location
