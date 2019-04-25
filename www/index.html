@@ -64,7 +64,10 @@
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="css/styles.css">
+	<!-- Add icon library -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="css/styles.css">
 
     <title>RunRecordShare</title>
 </head>
@@ -74,72 +77,243 @@
 
 	<div include-html="navbar_include.html"></div>
 
-	<div class="container">
-		<div class="row justify-content-center">
-			<h1>RunRecordShare</h1>
-		</div>
-		<div class="row justify-content-center">
-			<p>A place to something something blah blah blah add this later.</p>
-		</div>
-	</div>
-
 	<div id="content" class="container">
-		<div class="list-group" style="max-height: 600px; overflow-y: scroll">
-			<div class="list-group-item py-0">
-				<div class="row">
-					<div class="align-self-center h6 p-4">
-						MM/DD/YYYY
+		<div class="card mt-5">
+			<div class="card-header h4">
+				Goals
+				<a id="newGoalButton" class="btn btn-primary pull-right" href="newgoal.html" role="button"><i class="fa fa-plus"></i></a>
+			</div>
+			<div id="goals_list" class="list-group list-group-flush" style="max-height: 300px; overflow-y: scroll; resize: vertical">
+				<div class="list-group-item list-group-item-action py-0">
+					<div class="row">
+						<div class="col-md-2 p-4">
+							<div class="align-self-center text-center h1">
+								6
+							</div>
+							<div class="align-self-center text-center h6">
+								out of 25 miles
+							</div>
+						</div>
+						<div class="col border-left">
+							<div class="row border-bottom">
+								<div class="col p-2 px-3">
+									<div class="progress">
+										<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+									</div>
+								</div>
+							</div>
+							<div class="row border-bottom">
+								<div class="border-right p-2 px-3">
+									<span class="h6">From: </span>
+									<span>04/22/2019</span>
+								</div>
+								<div class="p-2 px-3">
+									<span class="h6">To: </span>
+									<span>04/29/2019</span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col p-2 px-3">
+									<span class="h6">Additional Notes: </span>
+									<span>-</span>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="col border-left">
-						<div class="row border-bottom">
-							<div class="border-right p-2 px-3">
-								<span class="h6">Distance: </span>
-								<span>-</span>
+				</div>
+				<div class="list-group-item list-group-item-action py-0">
+					<div class="row">
+						<div class="col-md-2 p-4">
+							<div class="align-self-center text-center h1">
+								4
 							</div>
-							<div class="p-2 px-3">
-								<span class="h6">Time: </span>
-								<span>-</span>
-							</div>
-						</div>
-						<div class="row border-bottom">
-							<div class="col p-2 px-3">
-								<span class="h6">Location: </span>
-								<span>-</span>
+							<div class="align-self-center text-center h6">
+								out of 8 hours
 							</div>
 						</div>
-						<div class="row">
-							<div class="col p-2 px-3">
-								<span class="h6">Additional Notes: </span>
-								<span>-</span>
+						<div class="col border-left">
+							<div class="row border-bottom">
+								<div class="col p-2 px-3">
+									<div class="progress">
+										<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+									</div>
+								</div>
+							</div>
+							<div class="row border-bottom">
+								<div class="border-right p-2 px-3">
+									<span class="h6">From: </span>
+									<span>04/22/2019</span>
+								</div>
+								<div class="p-2 px-3">
+									<span class="h6">To: </span>
+									<span>04/29/2019</span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col p-2 px-3">
+									<span class="h6">Additional Notes: </span>
+									<span>-</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="list-group-item list-group-item-action py-0">
+					<div class="row">
+						<div class="col-md-2 p-4">
+							<div class="align-self-center text-center h1">
+								6
+							</div>
+							<div class="align-self-center text-center h6">
+								out of 25 miles
+							</div>
+						</div>
+						<div class="col border-left">
+							<div class="row border-bottom">
+								<div class="col p-2 px-3">
+									<div class="progress">
+										<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+									</div>
+								</div>
+							</div>
+							<div class="row border-bottom">
+								<div class="border-right p-2 px-3">
+									<span class="h6">From: </span>
+									<span>04/22/2019</span>
+								</div>
+								<div class="p-2 px-3">
+									<span class="h6">To: </span>
+									<span>04/29/2019</span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col p-2 px-3">
+									<span class="h6">Additional Notes: </span>
+									<span>-</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="list-group-item list-group-item-action py-0">
+					<div class="row">
+						<div class="col-md-2 p-4">
+							<div class="align-self-center text-center h1">
+								4
+							</div>
+							<div class="align-self-center text-center h6">
+								out of 8 hours
+							</div>
+						</div>
+						<div class="col border-left">
+							<div class="row border-bottom">
+								<div class="col p-2 px-3">
+									<div class="progress">
+										<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+									</div>
+								</div>
+							</div>
+							<div class="row border-bottom">
+								<div class="border-right p-2 px-3">
+									<span class="h6">From: </span>
+									<span>04/22/2019</span>
+								</div>
+								<div class="p-2 px-3">
+									<span class="h6">To: </span>
+									<span>04/29/2019</span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col p-2 px-3">
+									<span class="h6">Additional Notes: </span>
+									<span>-</span>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="list-group-item list-group-item-action flex-column align-items-start">
-				<div class="d-flex w-100 justify-content-between">
-					<h5 class="mb-1">List group item heading</h5>
-					<small class="text-muted">3 days ago</small>
-				</div>
-				<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-				<small class="text-muted">Donec id elit non mi porta.</small>
+		</div>
+
+		<div class="card my-5">
+			<div class="card-header h4">
+				Logs
+				<a id="newLogButton" class="btn btn-primary pull-right" href="newlog.html" role="button"><i class="fa fa-plus"></i></a>
 			</div>
-			<div class="list-group-item list-group-item-action flex-column align-items-start">
-				<div class="d-flex w-100 justify-content-between">
-					<h5 class="mb-1">List group item heading</h5>
-					<small class="text-muted">3 days ago</small>
+			<div id="logs_list" class="list-group list-group-flush" style="max-height: 300px; overflow-y: scroll; resize: vertical">
+
+
+
+
+
+				<!-- Nolan here -->
+
+
+
+
+
+				<div class="list-group-item list-group-item-action py-0">
+					<div class="row">
+						<div class="align-self-center h6 p-4">
+							MM/DD/YYYY
+						</div>
+						<div class="col border-left">
+							<div class="row border-bottom">
+								<div class="border-right p-2 px-3">
+									<span class="h6">Distance: </span>
+									<span>-</span>
+								</div>
+								<div class="p-2 px-3">
+									<span class="h6">Time: </span>
+									<span>-</span>
+								</div>
+							</div>
+							<div class="row border-bottom">
+								<div class="col p-2 px-3">
+									<span class="h6">Location: </span>
+									<span>-</span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col p-2 px-3">
+									<span class="h6">Additional Notes: </span>
+									<span>-</span>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-				<small class="text-muted">Donec id elit non mi porta.</small>
+
+
+
+
+
+				<!-- Nolan end here -->
+
+
+
+
+
+				<div class="list-group-item list-group-item-action flex-column align-items-start">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">List group item heading</h5>
+						<small class="text-muted">3 days ago</small>
+					</div>
+					<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+					<small class="text-muted">Donec id elit non mi porta.</small>
+				</div>
+				<div class="list-group-item list-group-item-action flex-column align-items-start">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">List group item heading</h5>
+						<small class="text-muted">3 days ago</small>
+					</div>
+					<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+					<small class="text-muted">Donec id elit non mi porta.</small>
+				</div>
 			</div>
 		</div>
 
 	</div>
-
-
-
-	<a id="newLogButton" class="btn btn-primary" href="newlog.html" role="button">Input New Log</a>
-	<a id="newGoalButton" class="btn btn-primary" href="newgoal.html" role="button">Input New Goal</a>
 
 	<script>
 	includeHTML();
