@@ -144,7 +144,16 @@
 	}
 
 	function deleteEntry(log_id) {
-		
+
+		var request = "https://us-east1-runrecordshare.cloudfunctions.net/delete-entry?";
+		request += "log_id=" + log_id;
+
+		var xhttp;
+		xhttp = new XMLHttpRequest();
+        xhttp.open("GET", request, false);
+        xhttp.send();
+
+        return true;
 	}
 
 </script>
