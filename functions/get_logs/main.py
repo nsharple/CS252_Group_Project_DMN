@@ -82,10 +82,10 @@ def get_logs(request):
         for row in cursor:
 
             # Header
-            result += "<div class=\"list-group-item list-group-item-action py-0\">"
+            result += "<div class=\"list-group-item list-group-item-action py-0\"><div class=\"row\">"
 
 			# Date
-            result += "<div class=\"row\"><div class=\"col-md-2 text-center align-self-center h6 p-4\">"
+            result += "<div class=\"col-md-2 text-center align-self-center h6 p-4\">"
             result += str(row["date"])
 
 			# Distance
@@ -95,9 +95,15 @@ def get_logs(request):
 			# Time
             result += "</span></div><div class=\"col p-2 px-3\"><span class=\"h6\">Time: </span><span>"
             result += str(row.get('time')) if (row.get('time')) else "-"
+            result += "</span>"
+
+            # Delete Button
+            result += "<a class=\"btn btn-primary pull-right\" onclick=\"\" role=\"button\" log_id=\""
+            result += str(row.get('log_id'))
+            result += "\"<i class=\"fa fa-times\"</i></a>"
 
 			# Location
-            result += "</span></div></div><div class=\"row border-bottom\"><div class=\"col p-2 px-3\"><span class=\"h6\">Location: </span><span>"
+            result += "</div></div><div class=\"row border-bottom\"><div class=\"col p-2 px-3\"><span class=\"h6\">Location: </span><span>"
             result += row.get('location') if row.get('location') else "-"
 
 			# Additional Notes
