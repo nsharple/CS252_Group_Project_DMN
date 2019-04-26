@@ -79,42 +79,45 @@ def get_logs(request):
     with __get_cursor() as cursor:
         cursor.execute(query)
         result = ""
-        for row in reversed(cursor):
+        item = ""
+        for row in cursor:
 
             # Header
-            result += "<div class=\"list-group-item list-group-item-action py-0 border-bottom\"><div class=\"row\">"
+            item += "<div class=\"list-group-item list-group-item-action py-0 border-bottom\"><div class=\"row\">"
 
 			# Date
-            result += "<div class=\"col-md-2 text-center align-self-center h4 p-4\">"
-            result += str(row["date"])
+            item += "<div class=\"col-md-2 text-center align-self-center h4 p-4\">"
+            item += str(row["date"])
 
 			# Distance
-            result += "</div><div class=\"col border-left\"><div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">Distance: </span><span>"
-            result += str(row.get('distance')) if row.get('distance')  else "-"
+            item += "</div><div class=\"col border-left\"><div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">Distance: </span><span>"
+            item += str(row.get('distance')) if row.get('distance')  else "-"
 
 			# Time
-            result += "</span></div><div class=\"col p-2 px-3\"><span class=\"h6\">Time: </span><span>"
-            result += str(row.get('time')) if (row.get('time')) else "-"
-            result += "</span>"
+            item += "</span></div><div class=\"col p-2 px-3\"><span class=\"h6\">Time: </span><span>"
+            item += str(row.get('time')) if (row.get('time')) else "-"
+            item += "</span>"
 
 			# Location
-            result += "</div></div><div class=\"row border-bottom\"><div class=\"col p-2 px-3\"><span class=\"h6\">Location: </span><span>"
-            result += row.get('location') if row.get('location') else "-"
+            item += "</div></div><div class=\"row border-bottom\"><div class=\"col p-2 px-3\"><span class=\"h6\">Location: </span><span>"
+            item += row.get('location') if row.get('location') else "-"
 
 			# Additional Notes
-            result += "</span></div></div><div class=\"row\"><div class=\"col p-2 px-3\"><span class=\"h6\">Additional Notes: </span><span>"
-            result += row.get('notes') if row.get('notes') else "-"
-            result += "</span>"
+            item += "</span></div></div><div class=\"row\"><div class=\"col p-2 px-3\"><span class=\"h6\">Additional Notes: </span><span>"
+            item += row.get('notes') if row.get('notes') else "-"
+            item += "</span>"
 
             # Delete Button
-            result += "<a class=\"btn btn-dark pull-right bg-danger btn-sm\" role=\"button\" onclick=\"deleteEntry("
-            result += str(row.get('log_id'))
-            result += ", '"
-            result += "log"
-            result += "')\"><i class=\"fa fa-times\"></i></a>"
+            item += "<a class=\"btn btn-dark pull-right bg-danger btn-sm\" role=\"button\" onclick=\"deleteEntry("
+            item += str(row.get('log_id'))
+            item += ", '"
+            item += "log"
+            item += "')\"><i class=\"fa fa-times\"></i></a>"
 
 			# Rest
-            result += "</span></div></div></div></div></div>"
+            item += "</span></div></div></div></div></div>"
+
+            result = item + result
 
     headers = {'Access-Control-Allow-Origin': 'https://runrecordshare.appspot.com'}
 
