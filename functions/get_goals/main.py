@@ -68,21 +68,44 @@ def get_goals(request):
         result = ""
         for row in cursor:
 
+            # Calculations for progression and percentage
+            percentage = 0.0
+            distTotal = 0.0
+            timeTotal = 0.0
+            runTotal = 0
+            query2 = "SELECT * FROM logs WHERE email='" + email + "' AND date>='" + row.get('start_date') + "' AND date<='" + row.get('end_date') + "';"
+            with __get_cursor() as cursor2:
+                cursor2.execute(query)
+                for row2 in cursor2:
+                    distTotal += row2.get('distance') if row2.get('distance') else 0
+                    timeTotal += row2.get('time') if row2.get('time') else 0
+                    runTotal += 1
+
+                timeTotal = timeTotal / 3600.0
+
+
             # Header
             result += "<div class=\"list-group-item list-group-item-action py-0\">"
 
-            # So Far Completed
-            # Need to calculate this from logs between start_date and end_date
+            # Progression
             result += "<div class=\"row\"><div class=\"col-md-2 p-4\"><div class=\"align-self-center text-center h1\">"
-            result += "TEMP" #TEMPORARY
+            if row.get('type') == 'D':
+                result += str(distTotal)
+                percentage = distTotal / row.get('distance')
+            elif row.get('type') == 'T':
+                result += str(timeTotal)
+                percentage = timeTotal / row.get('time')
+            else:
+                result += str(runTotal)
+                percentage = runTotal / row.get('num_runs')
 
             # Total Goal
             goalLabel = "";
             result += "</div><div class=\"align-self-center text-center h6\">out of "
-            if row.get('type') == 'd':
+            if row.get('type') == 'D':
                 result += str(row.get('distance'))
                 goalLabel = " miles"
-            elif row.get('type') == 't':
+            elif row.get('type') == 'T':
                 result += str(row.get('time'))
                 goalLabel = " hours"
             else:
@@ -91,12 +114,11 @@ def get_goals(request):
             result += goalLabel
 
             # Progress Bar
-            # Also need to calculate this percentage
             result += "</div></div><div class=\"col border-left\"><div class=\"row border-bottom\"><div class=\"col p-2 px-3\"><div class=\"progress\">"
             result += "<div class=\"progress-bar progress-bar-striped bg-success\" role=\"progressbar\" style=\"width: 25%\" aria-valuenow=\""
-            result += "25" #TEMPORARY
+            result += str(percentage)
             result += "\" aria-valuemin=\"0\" aria-valuemax=\"100\">"
-            result += "TEMP" #TEMPORARY
+            result += str(percentage)
             result += "%</div></div></div></div>"
 
             # Start Date
