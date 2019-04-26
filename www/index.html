@@ -106,6 +106,12 @@
 		document.getElementById("signOutButton").removeAttribute("hidden");
 		document.getElementById("signInButton").setAttribute("hidden", true);
 
+		// Show user email and profile picture in nav
+		document.getElementById("userEmailNav").removeAttribute("hidden");
+        document.getElementById("userEmailNav").innerHTML = profile.getEmail();
+        document.getElementById("userPicNav").removeAttribute("hidden");
+		document.getElementById("userPicNav").setAttribute("src", profile.getImageUrl());
+
 		// Show newGoalButton and newLogButton
 		document.getElementById("newGoalButton").removeAttribute("hidden");
 		document.getElementById("newLogButton").removeAttribute("hidden");
@@ -246,6 +252,10 @@
 			// Hide the newGoal and newLog buttons
 			document.getElementById("newGoalButton").setAttribute("hidden", true);
 			document.getElementById("newLogButton").setAttribute("hidden", true);
+
+			// Hide user email and picture
+			document.getElementById("userEmailNav").setAttribute("hidden", true);
+            document.getElementById("userPicNav").setAttribute("hidden", true);
 
 			var auth2 = gapi.auth2.getAuthInstance();
 			auth2.signOut().then(function () {
