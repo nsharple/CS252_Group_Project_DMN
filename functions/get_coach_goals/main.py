@@ -143,9 +143,15 @@ def get_coach_goals(request):
             # Additional Notes
             result += "<div class=\"row\"><div class=\"col p-2 px-3\"><span class=\"h6\">Additional Notes: </span><span>"
             result += row.get('notes') if row.get('notes') else "-"
+            result += "</span>"
+
+            # Delete Button
+            result += "<a class=\"btn btn-dark pull-right bg-danger btn-sm\" onclick=\"\" role=\"button\" log_id=\""
+            result += str(row.get('log_id'))
+            result += "\"><i class=\"fa fa-times\"></i></a>"
 
             # Finish
-            result += "</span></div></div></div></div></div>"
+            result += "</div></div></div></div></div>"
 
     headers = {'Access-Control-Allow-Origin': 'https://runrecordshare.appspot.com'}
 
