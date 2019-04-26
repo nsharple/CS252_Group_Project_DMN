@@ -73,7 +73,7 @@ def get_goals(request):
             distTotal = 0.0
             timeTotal = 0.0
             runTotal = 0
-            query2 = "SELECT * FROM logs WHERE email='" + email + "' AND date>='" + row.get('start_date') + "' AND date<='" + row.get('end_date') + "';"
+            query2 = "SELECT * FROM logs WHERE email='" + email + "' AND date>='" + str(row.get('start_date')) + "' AND date<='" + str(row.get('end_date')) + "';"
             with __get_cursor() as cursor2:
                 cursor2.execute(query)
                 for row2 in cursor2:
