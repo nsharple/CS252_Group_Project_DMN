@@ -220,7 +220,7 @@
 	<div include-html="navbar_include.html"></div>
 
 	<!-- New Log Form -->
-	<form onSubmit="updateCoachEmail()" action="https://us-east1-runrecordshare.cloudfunctions.net/new-goal">
+	<form onSubmit="updateCoachEmail(); return submitGoal();" action="/">
 		<div class="form-group">
 			<input type="hidden" class="form-control" id="coachEmail">
 		</div>
