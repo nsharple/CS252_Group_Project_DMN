@@ -119,7 +119,7 @@
 	}
 
 	function updateCoachEmail() {
-		if (!document.getElementById("inputEmails").value) {
+		if (document.getElementById("inputEmails").value.length < 1) {
 			document.getElementById("inputEmails").setAttribute("value", document.getElementById("coachEmail").value);
 			document.getElementById("coachEmail").setAttribute("value", "");
 		}
@@ -156,9 +156,7 @@
 
 		var request = "https://us-east1-runrecordshare.cloudfunctions.net/new-goal?email=";
 
-		var args = "&";
-
-		args += "&type=" + type;
+		var args = "&type=" + type;
 
 		args += "&start_date=" + start_date;
 
