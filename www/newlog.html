@@ -60,6 +60,67 @@
 		document.getElementById("inputEmail").setAttribute("value", profile.getEmail());
 	}
 
+	function submitLog()
+	{
+		var email, date, distance, time, location, notes;
+
+		email = document.getElementById("inputEmail").value;
+
+		date = document.getElementById("inputDate").value;
+
+		distance = document.getElementById("inputDistance").value;
+
+		time = document.getElementById("inputTime").value;
+
+		location = document.getElementById("inputLocation").value;
+
+		notes = document.getElementById("inputNotes").value;
+
+		var request = "https://us-east1-runrecordshare.cloudfunctions.net/new-log?";
+
+		request += "email=" + email;
+
+		request += "&date=" + date;
+
+		if (distance.length > 0)
+		{
+			request += "&distance=" + distance;
+		}
+
+		if (time.length > 0)
+		{
+			request += "&time=" + time;
+		}
+
+		if (location.length > 0)
+		{
+			request += "&location=" + location;
+		}
+
+		if (notes.length > 0)
+		{
+			request += "&notes=" + notes;
+		}
+
+		var xhttp;
+
+		xhttp = new XMLHttpRequest();
+
+		xhttp.onreadystatechange = function()
+		{
+			if (this.readyState == 4)
+			{
+    	 		if (this.status == 200)
+    	 	   	{
+	    			window.location.replace("/");
+	    	   	}
+    	    }
+	    }
+
+        xhttp.open("GET", request, true);
+        xhttp.send();
+	}
+
 </script>
 
 	<!-- Bootstrap stuff -->
@@ -79,7 +140,7 @@
 	<div include-html="navbar_include.html"></div>
 
 	<!-- New Log Form -->
-	<form action="https://us-east1-runrecordshare.cloudfunctions.net/new-log">
+	<form onsubmit="submitLog()">
 		<div class="form-group">
 			<input type="hidden" class="form-control" id="inputEmail" name="email">
 		</div>
@@ -88,9 +149,8 @@
 			<input type="date" class="form-control" id="inputDate" name="date" required>
 		</div>
 		<div class="form-group">
-			<label for="distance">Distance</label>
+			<label for="inputDistance">Distance (In miles)</label>
 			<input type="text" class="form-control" id="inputDistance" name="distance" placeholder="26.2" pattern="[0-9]{0,8}.?[0-9]{0,2}" title="Number in format: 'XXXXXXXX.XX'">
-			<label for="miles">Miles</label>
 		</div>
 		<div class="form-group">
 			<label for="inputTime">Time</label>
