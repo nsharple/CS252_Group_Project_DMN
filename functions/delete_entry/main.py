@@ -52,7 +52,7 @@ def delete_entry(request):
         return ('', 204, headers)
 
     global mysql_conn
-
+    return "yep"
     # Initialize connections lazily, in case SQL access isn't needed for this
     # GCF instance. Doing so minimizes the number of active SQL connections,
     # which helps keep your GCF instances under SQL connection limits.
