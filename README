@@ -12,6 +12,5 @@ Framework - Bootstrap
 Hosting - Google Cloud Platform
 
 To Do:
-1) Redirecting to index from newgoal/newlog forms
-2) Deleting logs/goals?
-3) Fix date restrictions in newlog.html and newgoal.html
+1) Deleting logs/goals?
+2) Fix date restrictions in newlog.html and newgoal.html
