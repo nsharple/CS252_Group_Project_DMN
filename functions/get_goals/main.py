@@ -78,7 +78,7 @@ def get_goals(request):
                 cursor2.execute(query2)
                 for row2 in cursor2:
                     distTotal += row2.get('distance') if row2.get('distance') else 0
-                    timeTotal += row2.get('time') if row2.get('time') else 0
+                    timeTotal += row2.get('time').total_seconds() if row2.get('time') else 0
                     runTotal += 1
 
                 timeTotal = timeTotal / 3600.0
