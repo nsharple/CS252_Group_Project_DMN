@@ -79,7 +79,7 @@
 	<div include-html="navbar_include.html"></div>
 
 	<!-- New Log Form -->
-	<form action="https://us-east1-runrecordshare.cloudfunctions.net/new-log" onsubmit="submitLog()" target="hiddenFrame">
+	<form action="https://us-east1-runrecordshare.cloudfunctions.net/new-log" target="hiddenFrame">
 		<div class="form-group">
 			<input type="hidden" class="form-control" id="inputEmail" name="email">
 		</div>
@@ -104,7 +104,7 @@
 			<input type="text" class="form-control" id="inputNotes" name="notes" placeholder="Place any notes from your run here!" maxlength="1000" title="1000 max characters" aria-describedby="notesHelpBlock">
 			<small id="notesHelpBlock" class="form-text text-muted">Your notes may not exceed 1000 characters.</small>
 		</div>
-		<button type="submit" class="btn btn-primary">Submit Log</button>
+		<button type="submit" class="btn btn-primary" onclick="window.location.replace('/')">Submit Log</button>
 	</form>
 
 	<script>
