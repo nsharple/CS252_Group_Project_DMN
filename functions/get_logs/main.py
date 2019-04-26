@@ -97,11 +97,6 @@ def get_logs(request):
             result += str(row.get('time')) if (row.get('time')) else "-"
             result += "</span>"
 
-            # Delete Button
-            result += "<a class=\"btn btn-dark pull-right bg-danger btn-sm\" onclick=\"\" role=\"button\" log_id=\""
-            result += str(row.get('log_id'))
-            result += "\"><i class=\"fa fa-times\"></i></a>"
-
 			# Location
             result += "</div></div><div class=\"row border-bottom\"><div class=\"col p-2 px-3\"><span class=\"h6\">Location: </span><span>"
             result += row.get('location') if row.get('location') else "-"
@@ -109,6 +104,12 @@ def get_logs(request):
 			# Additional Notes
             result += "</span></div></div><div class=\"row\"><div class=\"col p-2 px-3\"><span class=\"h6\">Additional Notes: </span><span>"
             result += row.get('notes') if row.get('notes') else "-"
+            result += "</span>"
+
+            # Delete Button
+            result += "<a class=\"btn btn-dark pull-right bg-danger btn-sm\" onclick=\"\" role=\"button\" log_id=\""
+            result += str(row.get('log_id'))
+            result += "\"><i class=\"fa fa-times\"></i></a>"
 
 			# Rest
             result += "</span></div></div></div></div></div>"
