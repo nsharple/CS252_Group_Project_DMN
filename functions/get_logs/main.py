@@ -90,7 +90,7 @@ def get_logs(request):
 
 			# Distance
             result += "</div><div class=\"col border-left\"><div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">Distance: </span><span>"
-            result += str(row.get('distance')) if str(row.get('distance')) else "-"
+            result += str(row.get('distance')) if row.get('distance')  else "-"
 
 			# Time
             result += "</span></div><div class=\"col p-2 px-3\"><span class=\"h6\">Time: </span><span>"
