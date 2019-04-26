@@ -60,69 +60,6 @@
 		document.getElementById("inputEmail").setAttribute("value", profile.getEmail());
 	}
 
-	function submitLog()
-	{
-		var email, date, distance, time, location, notes;
-
-		email = document.getElementById("inputEmail").value;
-
-		date = document.getElementById("inputDate").value;
-
-		distance = document.getElementById("inputDistance").value;
-
-		time = document.getElementById("inputTime").value;
-
-		location = document.getElementById("inputLocation").value;
-
-		notes = document.getElementById("inputNotes").value;
-
-		var request = "https://us-east1-runrecordshare.cloudfunctions.net/new-log?";
-
-		request += "email=" + email;
-
-		request += "&date=" + date;
-
-		if (distance.length > 0)
-		{
-			request += "&distance=" + distance;
-		}
-
-		if (time.length > 0)
-		{
-			request += "&time=" + time;
-		}
-
-		if (location.length > 0)
-		{
-			request += "&location=" + location;
-		}
-
-		if (notes.length > 0)
-		{
-			request += "&notes=" + notes;
-		}
-
-		var xhttp;
-
-		xhttp = new XMLHttpRequest();
-
-		xhttp.onreadystatechange = function()
-		{
-			if (this.readyState == 4)
-			{
-    	 		if (this.status == 200)
-    	 	   	{
-	    			window.location.replace("/");
-	    	   	}
-    	    }
-	    }
-
-        xhttp.open("GET", request, false);
-        xhttp.send();
-
-        return false;
-	}
-
 </script>
 
 	<!-- Bootstrap stuff -->
