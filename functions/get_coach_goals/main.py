@@ -117,7 +117,9 @@ def get_coach_goals(request):
 
             # Progress Bar
             result += "</div></div><div class=\"col border-left\"><div class=\"row border-bottom\"><div class=\"col p-2 px-3\"><div class=\"progress\">"
-            result += "<div class=\"progress-bar progress-bar-striped bg-success\" role=\"progressbar\" style=\"width: "
+            result += "<div class=\"progress-bar progress-bar-striped "
+            result += "bg-success" if percentage == 100 else "bg-primary"
+            result += "\" role=\"progressbar\" style=\"width: "
             result += "{0:.2f}".format(percentage)
             result += "%\" aria-valuenow=\""
             result += "{0:.2f}".format(percentage)
