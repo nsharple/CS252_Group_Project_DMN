@@ -66,54 +66,24 @@ def delete_entry(request):
 
     request_json = request.get_json()
     if request.args and 'row_id' in request.args:
-        email = request.args.get('row_id')
+        row_id = request.args.get('row_id')
     elif request_json and 'row_id' in request_json:
-        email = request_json['row_id']
+        row_id = request_json['row_id']
+    else:
+        return ""
+
+    if request.args and 'type' in request.args:
+        type1 = request.args.get('type')
+    elif request_json and 'type' in request_json:
+        type1 = request_json['type']
     else:
         return ""
 
     # Remember to close SQL resources declared while running this function.
     # Keep any declared in global scope (e.g. mysql_conn) for later reuse.
 
-    query = "SELECT * FROM logs WHERE email='" + email + "';"
+    query = "DELETE FROM " + type1 + "s WHERE " + type1 + "_id='" + row_id + "';"
     with __get_cursor() as cursor:
         cursor.execute(query)
-        result = ""
-        for row in cursor:
 
-            # Header
-            result += "<div class=\"list-group-item list-group-item-action py-0\"><div class=\"row\">"
-
-			# Date
-            result += "<div class=\"col-md-2 text-center align-self-center h4 p-4\">"
-            result += str(row["date"])
-
-			# Distance
-            result += "</div><div class=\"col border-left\"><div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">Distance: </span><span>"
-            result += str(row.get('distance')) if row.get('distance')  else "-"
-
-			# Time
-            result += "</span></div><div class=\"col p-2 px-3\"><span class=\"h6\">Time: </span><span>"
-            result += str(row.get('time')) if (row.get('time')) else "-"
-            result += "</span>"
-
-			# Location
-            result += "</div></div><div class=\"row border-bottom\"><div class=\"col p-2 px-3\"><span class=\"h6\">Location: </span><span>"
-            result += row.get('location') if row.get('location') else "-"
-
-			# Additional Notes
-            result += "</span></div></div><div class=\"row\"><div class=\"col p-2 px-3\"><span class=\"h6\">Additional Notes: </span><span>"
-            result += row.get('notes') if row.get('notes') else "-"
-            result += "</span>"
-
-            # Delete Button
-            result += "<a class=\"btn btn-dark pull-right bg-danger btn-sm\" role=\"button\" onclick=\"deleteEntry("
-            result += str(row.get('log_id'))
-            result += ")\"><i class=\"fa fa-times\"></i></a>"
-
-			# Rest
-            result += "</span></div></div></div></div></div>"
-
-    headers = {'Access-Control-Allow-Origin': 'https://runrecordshare.appspot.com'}
-
-    return (result, 200, headers)
+    return;
