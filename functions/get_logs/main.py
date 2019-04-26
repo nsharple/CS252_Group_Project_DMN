@@ -107,9 +107,9 @@ def get_logs(request):
             result += "</span>"
 
             # Delete Button
-            result += "<a class=\"btn btn-dark pull-right bg-danger btn-sm\" onclick=\"\" role=\"button\" log_id=\""
+            result += "<a class=\"btn btn-dark pull-right bg-danger btn-sm\" role=\"button\" onclick=\"deleteEntry("
             result += str(row.get('log_id'))
-            result += "\"><i class=\"fa fa-times\"></i></a>"
+            result += ")\"><i class=\"fa fa-times\"></i></a>"
 
 			# Rest
             result += "</span></div></div></div></div></div>"
