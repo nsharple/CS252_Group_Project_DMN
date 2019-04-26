@@ -12,7 +12,6 @@ Framework - Bootstrap
 Hosting - Google Cloud Platform
 
 To Do:
-1) User name & profile picture in navbar?
-2) Goals you coach in the UI
-3) Deleting logs/goals?
-4) Fix date restrictions in newlog.html and newgoal.html
+1) Redirecting to index from newgoal/newlog forms
+2) Deleting logs/goals?
+3) Fix date restrictions in newlog.html and newgoal.html
