@@ -83,7 +83,6 @@ def get_goals(request):
 
                 timeTotal = timeTotal / 3600.0
 
-
             # Header
             result += "<div class=\"list-group-item list-group-item-action py-0\">"
 
@@ -124,6 +123,11 @@ def get_goals(request):
             result += "\" aria-valuemin=\"0\" aria-valuemax=\"100\">"
             result += "{0:.2f}".format(percentage)
             result += "%</div></div></div></div>"
+
+            # Coach Email
+            result += "<div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">Given by: </span><span>"
+            result += row.get('coach_email') if row.get('coach_email') else "Yourself"
+			result += "</span></div>
 
             # Start Date
             result += "<div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">From: </span><span>"
