@@ -71,7 +71,7 @@
 		var year = dateToday.getFullYear();
 		var month = dateToday.getMonth() + 1;
 		var day = dateToday.getDate();
-		var formattedDate = year + "-" + month + "-" + day;j
+		var formattedDate = year + "-" + month + "-" + day;
 		console.log(formattedDate);
 		document.getElementById("inputEndDate").setAttribute("min", formattedDate);
 	}
@@ -169,15 +169,15 @@
 			args += "&coachEmail=" + coachEmail;
 		}
 
-		if (distance.length > 0)
+		if (type == "D")
 		{
 			args += "&distance=" + distance;
 		}
-		else if (time.length > 0)
+		else if (type == "T")
 		{
 			args += "&time=" + time;
 		}
-		else if (numRuns.length > 0)
+		else if (type == "N")
 		{
 			args += "&numRuns=" + numRuns;
 		}
