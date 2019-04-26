@@ -147,7 +147,7 @@ def get_coach_goals(request):
 
             # Delete Button
             result += "<a class=\"btn btn-dark pull-right bg-danger btn-sm\" role=\"button\" onclick=\"deleteEntry("
-            result += str(row.get('log_id'))
+            result += str(row.get('goal_id'))
             result += ")\"><i class=\"fa fa-times\"></i></a>"
 
             # Finish
