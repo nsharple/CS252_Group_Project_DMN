@@ -143,3 +143,4 @@ def get_goals(request):
     headers = {'Access-Control-Allow-Origin': 'https://runrecordshare.appspot.com'}
 
     return (result, 200, headers)
+
