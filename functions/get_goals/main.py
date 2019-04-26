@@ -75,7 +75,7 @@ def get_goals(request):
             runTotal = 0
             query2 = "SELECT * FROM logs WHERE email='" + email + "' AND date>='" + str(row.get('start_date')) + "' AND date<='" + str(row.get('end_date')) + "';"
             with __get_cursor() as cursor2:
-                cursor2.execute(query)
+                cursor2.execute(query2)
                 for row2 in cursor2:
                     distTotal += row2.get('distance') if row2.get('distance') else 0
                     timeTotal += row2.get('time') if row2.get('time') else 0
@@ -98,6 +98,7 @@ def get_goals(request):
             else:
                 result += str(runTotal)
                 percentage = runTotal / row.get('num_runs')
+            percentage = percentage * 100
 
             # Total Goal
             goalLabel = "";
