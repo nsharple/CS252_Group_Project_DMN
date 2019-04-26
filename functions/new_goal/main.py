@@ -179,3 +179,6 @@ def new_goal(request):
     with __get_cursor() as cursor:
         cursor.execute(query)
 
+    headers = {'Access-Control-Allow-Origin': 'https://runrecordshare.appspot.com'}
+
+    return ("", 200, headers)

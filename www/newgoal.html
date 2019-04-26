@@ -80,7 +80,6 @@
 		var choice = document.getElementById("inputType").value;
 		document.getElementById("goalLabel").innerHTML = choice;
 		if (choice == "Distance") {
-			document.getElementById("inputGoal").setAttribute("name", "distance");
 			document.getElementById("inputGoal").setAttribute("placeholder", "26.2");
 			document.getElementById("inputGoal").setAttribute("pattern", "[0-9]{0,8}.?[0-9]{0,2}");
 			document.getElementById("inputGoal").setAttribute("title", "Number in format: 'XXXXXXXX.XX'");
@@ -88,7 +87,6 @@
 			document.getElementById("typeLabel").innerHTML = "Miles";
 		}
 		else if (choice == "Time") {
-			document.getElementById("inputGoal").setAttribute("name", "time");
 			document.getElementById("inputGoal").setAttribute("placeholder", "4");
 			document.getElementById("inputGoal").setAttribute("pattern", "[0-9]{0,8}.?[0-9]{0,2}");
 			document.getElementById("inputGoal").setAttribute("title", "Time in format: 'XXXXXXXX.XX'");
@@ -96,10 +94,9 @@
 			document.getElementById("typeLabel").innerHTML = "Hours";
 		}
 		else if (choice == "Number of Runs") {
-			document.getElementById("inputGoal").setAttribute("name", "numRuns");
 			document.getElementById("inputGoal").setAttribute("placeholder", "5");
-			document.getElementById("inputGoal").setAttribute("pattern", "[0-9]{1,10}");
-			document.getElementById("inputGoal").setAttribute("title", "Number of runs at most 10 digits long");
+			document.getElementById("inputGoal").setAttribute("pattern", "[0-9]{1,4}");
+			document.getElementById("inputGoal").setAttribute("title", "Number of runs at most 4 digits long");
 
 			document.getElementById("typeLabel").innerHTML = "Runs";
 		}
@@ -128,6 +125,82 @@
 		}
 	}
 
+	function submitGoal()
+	{
+		var email, coachEmail, type, distance, time, numRuns, start_date, end_date, notes;
+
+		email = document.getElementById("inputEmails").value;
+
+		coachEmail = document.getElementById("coachEmail").value;
+
+		type = document.getElementById("inputType").value.charAt(0);
+
+		if (type == "D")
+		{
+			distance = document.getElementById("inputGoal").value;
+		}
+		else if (type == "T")
+		{
+			time = document.getElementById("inputGoal").value;
+		}
+		else if (type == "N")
+		{
+			numRuns = document.getElementById("inputGoal").value;
+		}
+
+		start_date = document.getElementById("inputStartDate").value;
+
+		end_date = document.getElementById("inputEndDate").value;
+
+		notes = document.getElementById("inputNotes").value;
+
+		var request = "https://us-east1-runrecordshare.cloudfunctions.net/new-goal?email=";
+
+		var args = "&";
+
+		args += "&type=" + type;
+
+		args += "&start_date=" + start_date;
+
+		args += "&end_date=" + end_date;
+
+		if (coachEmail.length > 0)
+		{
+			args += "&coachEmail=" + coachEmail;
+		}
+
+		if (distance.length > 0)
+		{
+			args += "&distance=" + distance;
+		}
+		else if (time.length > 0)
+		{
+			args += "&time=" + time;
+		}
+		else if (numRuns.length > 0)
+		{
+			args += "&numRuns=" + numRuns;
+		}
+
+		if (notes.length > 0)
+		{
+			args += "&notes=" + notes;
+		}
+
+		emails = email.split(",");
+
+		for (int i = 0; i < emails.length; i++)
+		{
+			var xhttp;
+
+			xhttp = new XMLHttpRequest();
+        	xhttp.open("GET", request + emails[i] + args, false);
+        	xhttp.send();
+		}
+
+        return true;
+	}
+
 </script>
 
 	<!-- Bootstrap stuff -->
@@ -147,18 +220,18 @@
 	<div include-html="navbar_include.html"></div>
 
 	<!-- New Log Form -->
-	<form onSubmit="updateCoachEmail()" action="https://us-east1-runrecordshare.cloudfunctions.net/new-goal">
+	<form onSubmit="updateCoachEmail(); return submitGoal();" action="/">
 		<div class="form-group">
-			<input type="hidden" class="form-control" id="coachEmail" name="coachEmail">
+			<input type="hidden" class="form-control" id="coachEmail">
 		</div>
 		<div class="form-group">
 			<label for="inputEmails">Email(s)</label>
-			<input type="email" class="form-control" id="inputEmails" multiple name="email" aria-describedby="emailsHelpText">
+			<input type="email" class="form-control" id="inputEmails" multiple aria-describedby="emailsHelpText">
 			<small id="emailsHelpText" class="form-text text-muted">Leave this blank if this is a personal goal. Enter a comma separated list of emails if this goal is for other runners.</small>
 		</div>
 		<div class="form-group">
 			<label for="inputType">Goal Type</label>
-			<select class="form-control" id="inputType" name="type" selected="Distance" onchange="onTypeChange()" required>
+			<select class="form-control" id="inputType" selected="Distance" onchange="onTypeChange()" required>
 				<option value="Distance">Distance</option>
 				<option value="Time">Time</option>
 				<option value="Number of Runs">Number of Runs</option>
@@ -171,15 +244,15 @@
 		</div>
 		<div class="form-group">
 			<label for="inputStartDate">Start Date</label>
-			<input type="date" class="form-control" id="inputStartDate" name="start_date" required>
+			<input type="date" class="form-control" id="inputStartDate" required>
 		</div>
 		<div class="form-group">
 			<label for="inputEndDate">End Date</label>
-			<input type="date" class="form-control" id="inputEndDate" name="end_date" title="Put an end that is no earlier than today" onclick="getEarliestDate()" required>
+			<input type="date" class="form-control" id="inputEndDate" title="Put an end that is no earlier than today" onclick="getEarliestDate()" required>
 		</div>
 		<div class="form-group">
 			<label for="inputNotes">Notes</label>
-			<input type="text" class="form-control" id="inputNotes" name="notes" placeholder="Place any notes about your goal here!" maxlength="1000" title="1000 max characters" aria-describedby="notesHelpBlock">
+			<input type="text" class="form-control" id="inputNotes" placeholder="Place any notes about your goal here!" maxlength="1000" title="1000 max characters" aria-describedby="notesHelpBlock">
 			<small id="notesHelpBlock" class="form-text text-muted">Your notes may not exceed 1000 characters.</small>
 		</div>
 		<button type="submit" class="btn btn-primary">Create Goal</button>
