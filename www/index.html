@@ -143,10 +143,11 @@
 		populateCoachGoalsList(email);
 	}
 
-	function deleteEntry(log_id) {
+	function deleteEntry(row_id, type) {
 
 		var request = "https://us-east1-runrecordshare.cloudfunctions.net/delete-entry?";
-		request += "log_id=" + log_id;
+		request += "row_id=" + row_id;
+		request += "type=" + type;
 
 		var xhttp;
 		xhttp = new XMLHttpRequest();

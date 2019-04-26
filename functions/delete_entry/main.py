@@ -65,10 +65,10 @@ def delete_entry(request):
             mysql_conn = pymysql.connect(**mysql_config)
 
     request_json = request.get_json()
-    if request.args and 'email' in request.args:
-        email = request.args.get('email')
-    elif request_json and 'email' in request_json:
-        email = request_json['email']
+    if request.args and 'row_id' in request.args:
+        email = request.args.get('row_id')
+    elif request_json and 'row_id' in request_json:
+        email = request_json['row_id']
     else:
         return ""
 
