@@ -52,7 +52,7 @@ def delete_entry(request):
         return ('', 204, headers)
 
     global mysql_conn
-    return "yep"
+
     # Initialize connections lazily, in case SQL access isn't needed for this
     # GCF instance. Doing so minimizes the number of active SQL connections,
     # which helps keep your GCF instances under SQL connection limits.
@@ -82,7 +82,7 @@ def delete_entry(request):
     # Remember to close SQL resources declared while running this function.
     # Keep any declared in global scope (e.g. mysql_conn) for later reuse.
 
-    query = "DELETE FROM " + type1 + "s WHERE " + type1 + "_id='" + row_id + "';"
+    query = "DELETE FROM " + type1 + "s WHERE " + type1 + "_id=" + row_id + ";"
     with __get_cursor() as cursor:
         cursor.execute(query)
 
