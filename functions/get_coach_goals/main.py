@@ -91,7 +91,7 @@ def get_coach_goals(request):
             result += "<div class=\"row\"><div class=\"col-md-2 p-4\"><div class=\"align-self-center text-center h1\">"
             if row.get('type') == 'D':
                 result += str(distTotal)
-#                percentage = distTotal / row.get('distance')
+                percentage = distTotal / row.get('distance')
             elif row.get('type') == 'T':
                 result += "{0:.2f}".format(timeTotal)
                 percentage = timeTotal / row.get('time')
