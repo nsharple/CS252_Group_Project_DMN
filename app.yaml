@@ -7,13 +7,9 @@ handlers:
   static_files: www/index.html
   upload: www/index.html
 
-- url: /goals
-  static_files: www/goals.html
+- url: /newgoal
+  static_files: www/newgoal.html
   upload: www/goals.html
-
-- url: /logs
-  static_files: www/logs.html
-  upload: www/logs.html
 
 - url: /newlog
   static_files: www/newlog.html
