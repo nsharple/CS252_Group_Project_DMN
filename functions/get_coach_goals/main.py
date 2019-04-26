@@ -125,8 +125,13 @@ def get_coach_goals(request):
             result += "{0:.2f}".format(percentage)
             result += "%</div></div></div></div>"
 
+            # Given To Email
+            result += "<div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">Given To:  </span><span>"
+			result += row.get('email')
+            result += "</span></div>"
+
             # Start Date
-            result += "<div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">From: </span><span>"
+            result += "<div class=\"border-right p-2 px-3\"><span class=\"h6\">From: </span><span>"
             result += str(row.get('start_date'))
             result += "</span></div>"
 
