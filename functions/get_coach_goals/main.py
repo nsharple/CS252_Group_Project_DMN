@@ -85,7 +85,7 @@ def get_coach_goals(request):
 
 
             # Header
-            item = "<div class=\"list-group-item list-group-item-action py-0\">"
+            item = "<div class=\"list-group-item list-group-item-action py-0 border-bottom\">"
 
             # Progression
             item += "<div class=\"row\"><div class=\"col-md-2 p-4\"><div class=\"align-self-center text-center h1\">"
