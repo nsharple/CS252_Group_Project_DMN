@@ -79,11 +79,10 @@ def get_logs(request):
     with __get_cursor() as cursor:
         cursor.execute(query)
         result = ""
-        item = ""
         for row in cursor:
 
             # Header
-            item += "<div class=\"list-group-item list-group-item-action py-0 border-bottom\"><div class=\"row\">"
+            item = "<div class=\"list-group-item list-group-item-action py-0 border-bottom\"><div class=\"row\">"
 
 			# Date
             item += "<div class=\"col-md-2 text-center align-self-center h4 p-4\">"
