@@ -99,6 +99,7 @@ def get_goals(request):
                 result += str(runTotal)
                 percentage = runTotal / row.get('num_runs')
             percentage = percentage * 100
+			percentage = 100.0 if percentage > 100 else percentage
 
             # Total Goal
             goalLabel = "";
