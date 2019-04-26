@@ -130,7 +130,7 @@ def get_goals(request):
             result += "</span></div>"
 
             # Start Date
-            result += "<div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">From: </span><span>"
+            result += "<div class=\"border-right p-2 px-3\"><span class=\"h6\">From: </span><span>"
             result += str(row.get('start_date'))
             result += "</span></div>"
 
