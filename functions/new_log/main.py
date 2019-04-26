@@ -138,4 +138,4 @@ def new_log(request):
 
     headers = {'Access-Control-Allow-Origin': 'https://runrecordshare.appspot.com'}
 
-    return ("cccc", 200, headers)
+    return (query, 200, headers)
