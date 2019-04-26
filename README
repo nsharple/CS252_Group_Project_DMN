@@ -14,3 +14,5 @@ Hosting - Google Cloud Platform
 To Do:
 1) Deleting logs/goals?
 2) Fix date restrictions in newlog.html and newgoal.html
+3) Gray out uncompleted goals
+4) Sort entries by date
