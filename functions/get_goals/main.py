@@ -84,7 +84,7 @@ def get_goals(request):
                 timeTotal = timeTotal / 3600.0
 
             # Header
-            result += "<div class=\"list-group-item list-group-item-action py-0\">"
+            result += "<div class=\"list-group-item list-group-item-action py-0 border-bottom\">"
 
             # Progression
             result += "<div class=\"row\"><div class=\"col-md-2 p-4\"><div class=\"align-self-center text-center h1\">"
@@ -116,7 +116,9 @@ def get_goals(request):
 
             # Progress Bar
             result += "</div></div><div class=\"col border-left\"><div class=\"row border-bottom\"><div class=\"col p-2 px-3\"><div class=\"progress\">"
-            result += "<div class=\"progress-bar progress-bar-striped bg-success\" role=\"progressbar\" style=\"width: "
+            result += "<div class=\"progress-bar progress-bar-striped"
+            result += "bg-success" if percentage == 100 else "bg-primary"
+            result += "\" role=\"progressbar\" style=\"width: "
             result += "{0:.2f}".format(percentage)
             result += "%\" aria-valuenow=\""
             result += "{0:.2f}".format(percentage)
