@@ -111,8 +111,10 @@
 		var xhttp;
 
 		xhttp = new XMLHttpRequest();
-        xhttp.open("GET", request, true);
+        xhttp.open("GET", request, false);
         xhttp.send();
+
+        return true;
 	}
 
 </script>
@@ -134,7 +136,7 @@
 	<div include-html="navbar_include.html"></div>
 
 	<!-- New Log Form -->
-	<form action="/">
+	<form action="/" onsubmit="return submitLog();">
 		<div class="form-group">
 			<input type="hidden" class="form-control" id="inputEmail">
 		</div>
