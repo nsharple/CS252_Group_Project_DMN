@@ -51,13 +51,19 @@
 
 		// Useful data for client-side scripts:
 		var profile = googleUser.getBasicProfile();
-		console.log('Full Name: ' + profile.getGivenName());
-		console.log('Family Name: ' + profile.getFamilyName());
-		console.log("Image URL: " + profile.getImageUrl());
-		console.log("Email: " + profile.getEmail());
 
 		// Set the email value for the form
 		document.getElementById("inputEmail").setAttribute("value", profile.getEmail());
+
+		// Show user email and profile picture in nav
+		document.getElementById("userEmailNav").removeAttribute("hidden");
+        document.getElementById("userEmailNav").innerHTML = profile.getEmail();
+        document.getElementById("userPicNav").removeAttribute("hidden");
+		document.getElementById("userPicNav").setAttribute("src", profile.getImageUrl());
+
+		// Show sign out button now
+		document.getElementById("signOutButton").removeAttribute("hidden");
+		document.getElementById("signInButton").setAttribute("hidden", true);
 	}
 
 </script>
@@ -114,6 +120,15 @@
 
 	<script>
 		function signOut() {
+
+			// Hide sign out button. Show sign in button.
+			document.getElementById("signOutButton").setAttribute("hidden", true);
+			document.getElementById("signInButton").removeAttribute("hidden");
+
+			// Hide user email and picture
+			document.getElementById("userEmailNav").setAttribute("hidden", true);
+			document.getElementById("userPicNav").setAttribute("hidden", true);
+
 			var auth2 = gapi.auth2.getAuthInstance();
 			auth2.signOut().then(function () {
 				console.log('User signed out.');
