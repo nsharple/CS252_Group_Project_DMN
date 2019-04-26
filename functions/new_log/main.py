@@ -67,7 +67,7 @@ def new_log(request):
         values += request_json['email']
         values += "\""
     else:
-        return ""
+        return "aaaa"
 
     if request.args and 'date' in request.args:
         parameters += ", date"
@@ -82,7 +82,7 @@ def new_log(request):
         values += request_json['date']
         values += "\""
     else:
-        return ""
+        return "bbbb"
 
     distance = None
     if request.args and 'distance' in request.args:
@@ -138,4 +138,4 @@ def new_log(request):
 
     headers = {'Access-Control-Allow-Origin': 'https://runrecordshare.appspot.com'}
 
-    return ("", 200, headers)
+    return ("cccc", 200, headers)
