@@ -62,7 +62,7 @@ def get_coach_goals(request):
     # Remember to close SQL resources declared while running this function.
     # Keep any declared in global scope (e.g. mysql_conn) for later reuse.
 
-    query = "SELECT * FROM goals WHERE email='" + email + "';"
+    query = "SELECT * FROM goals WHERE coachEmail='" + email + "';"
     with __get_cursor() as cursor:
         cursor.execute(query)
         result = ""
