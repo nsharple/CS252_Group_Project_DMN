@@ -93,7 +93,7 @@ def get_goals(request):
                 result += str(distTotal)
                 percentage = distTotal / row.get('distance')
             elif row.get('type') == 'T':
-                result += str(timeTotal)
+                result += "{0:.2f}".format(timeTotal)
                 percentage = timeTotal / row.get('time')
             else:
                 result += str(runTotal)
@@ -115,10 +115,12 @@ def get_goals(request):
 
             # Progress Bar
             result += "</div></div><div class=\"col border-left\"><div class=\"row border-bottom\"><div class=\"col p-2 px-3\"><div class=\"progress\">"
-            result += "<div class=\"progress-bar progress-bar-striped bg-success\" role=\"progressbar\" style=\"width: 25%\" aria-valuenow=\""
-            result += str(percentage)
+            result += "<div class=\"progress-bar progress-bar-striped bg-success\" role=\"progressbar\" style=\"width: "
+            result += "{0:.2f}".format(percentage)
+            result += "%\" aria-valuenow=\""
+            result += "{0:.2f}".format(percentage)
             result += "\" aria-valuemin=\"0\" aria-valuemax=\"100\">"
-            result += str(percentage)
+            result += "{0:.2f}".format(percentage)
             result += "%</div></div></div></div>"
 
             # Start Date
