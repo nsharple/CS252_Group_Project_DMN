@@ -127,7 +127,7 @@ def get_coach_goals(request):
 
             # Given To Email
             result += "<div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">Given To:  </span><span>"
-			result += row.get('email')
+            result += row.get('email')
             result += "</span></div>"
 
             # Start Date
