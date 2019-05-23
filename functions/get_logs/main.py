@@ -82,7 +82,7 @@ def get_logs(request):
         for row in cursor:
 
             # Header
-            item = "<div class=\"list-group-item list-group-item-action py-0 border-bottom\"><div class=\"row\">"
+            item = "<form action=\"/\" onSubmit=\"return deleteEntry(" + str(row.get('log_id')) + ", 'log');\"><div class=\"list-group-item list-group-item-action py-0 border-bottom\"><div class=\"row\">"
 
 			# Date
             item += "<div class=\"col-md-2 text-center align-self-center h4 p-4\">"
@@ -107,11 +107,11 @@ def get_logs(request):
             item += "</span>"
 
             # Delete Button
-            item += "<form action=\"/\" onSubmit=\"return deleteEntry(" + str(row.get('log_id')) + ", 'log');\"><a class=\"btn btn-dark pull-right bg-danger btn-sm\" role=\"button\" type=\"submit\">"
-            item += "<i class=\"fa fa-times\"></i></a></form>"
+            item += "<a class=\"btn btn-dark pull-right bg-danger btn-sm\" role=\"button\" type=\"submit\">"
+            item += "<i class=\"fa fa-times\"></i></a>"
 
 			# Rest
-            item += "</span></div></div></div></div></div>"
+            item += "</span></div></div></div></div></div></form>"
 
             result = item + result
 
