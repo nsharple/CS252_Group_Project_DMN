@@ -148,16 +148,16 @@ def get_coach_goals(request):
             item += "</span>"
 
             # Delete Button
-            #item += "<a class=\"btn btn-dark pull-right bg-danger btn-sm\" role=\"button\" onclick=\"deleteEntry("
-            #item += str(row.get('goal_id'))
-            #item += ", 'goal')\"><i class=\"fa fa-times\"></i></a>"
+            item += "<a class=\"btn btn-dark pull-right bg-danger btn-sm\" role=\"button\" onclick=\"deleteEntry("
+            item += str(row.get('goal_id'))
+            item += ", 'goal')\"><i class=\"fa fa-times\"></i></a>"
 
             # Finish
             item += "</div></div></div></div></div>"
 
             result = item + result
 
-    headers = {'Access-Control-Allow-Origin': 'https://runrecordshare.appspot.com'}
+    headers = {'Access-Control-Allow-Origin': '*'}
 
     return (result, 200, headers)
 

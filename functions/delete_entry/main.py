@@ -86,6 +86,6 @@ def delete_entry(request):
     with __get_cursor() as cursor:
         cursor.execute(query)
 
-    headers = {'Access-Control-Allow-Origin': 'https://runrecordshare.appspot.com'}
+    headers = {'Access-Control-Allow-Origin': '*'}
 
     return ("", 200, headers);
