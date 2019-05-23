@@ -82,7 +82,7 @@ def delete_entry(request):
     # Remember to close SQL resources declared while running this function.
     # Keep any declared in global scope (e.g. mysql_conn) for later reuse.
 
-    query = "DELETE FROM " + type1 + "s WHERE " + type1 + "_id=" + row_id + ";"
+    query = "DELETE FROM " + type1 + " WHERE " + type1 + "_id=" + row_id + ";"
     with __get_cursor() as cursor:
         cursor.execute(query)
 
