@@ -37,6 +37,10 @@ def __get_cursor():
         return mysql_conn.cursor()
 
 
+def sortByDate(log):
+    return str(log.get('date'))
+
+
 def get_logs(request):
     # Set CORS headers for the preflight request
     if request.method == 'OPTIONS':
@@ -75,11 +79,17 @@ def get_logs(request):
     # Remember to close SQL resources declared while running this function.
     # Keep any declared in global scope (e.g. mysql_conn) for later reuse.
 
+    rowArray = []
     query = "SELECT * FROM logs WHERE email='" + email + "';"
     with __get_cursor() as cursor:
         cursor.execute(query)
         result = ""
         for row in cursor:
+            rowArray.append(row)
+
+        rowArray.sort(key=sortByDate)
+
+        for row in rowArray:
 
             # Header
             item = "<div class=\"list-group-item list-group-item-action py-0 border-bottom\"><div class=\"row\">"
