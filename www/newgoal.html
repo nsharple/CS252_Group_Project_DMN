@@ -72,7 +72,13 @@
 		var month = dateToday.getMonth() + 1;
 		var day = dateToday.getDate();
 		var formattedDate = year + "-" + month + "-" + day;
-		console.log(formattedDate);
+
+		if (formattedDate < document.getElementById("inputStartDate").value) {
+			formattedDate = document.getElementById("inputStartDate").value;
+		}
+
+		console.log(document.getElementById("inputStartDate").value);
+
 		document.getElementById("inputEndDate").setAttribute("min", formattedDate);
 	}
 
@@ -238,16 +244,16 @@
 			</div>
 			<div class="form-group">
 				<label for="inputGoal" id="goalLabel">Distance</label>
-				<input type="text" class="form-control" id="inputGoal" placeholder="26.2" required>
+				<input type="text" class="form-control" id="inputGoal" placeholder="26.2" pattern="[0-9]{0,8}.?[0-9]{0,2}" title="Number in format: 'XXXXXXXX.XX'" required>
 				<label for="miles" id="typeLabel">Miles</label>
 			</div>
 			<div class="form-group">
 				<label for="inputStartDate">Start Date</label>
-				<input type="date" class="form-control" id="inputStartDate" required>
+				<input type="date" class="form-control" id="inputStartDate" onchange="getEarliestDate()" required>
 			</div>
 			<div class="form-group">
 				<label for="inputEndDate">End Date</label>
-				<input type="date" class="form-control" id="inputEndDate" title="Put an end that is no earlier than today" onclick="getEarliestDate()" required>
+				<input type="date" class="form-control" id="inputEndDate" title="Put an end that is no earlier than today or the goal's start date" onclick="getEarliestDate()" required>
 			</div>
 			<div class="form-group">
 				<label for="inputNotes">Notes</label>
