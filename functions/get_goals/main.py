@@ -123,7 +123,12 @@ def get_goals(request):
             # Progress Bar
             item += "</div></div><div class=\"col border-left\"><div class=\"row border-bottom\"><div class=\"col p-2 px-3\"><div class=\"progress\">"
             item += "<div class=\"progress-bar progress-bar-striped "
-            item += "bg-success" if percentage == 100 else "bg-primary"
+            if percentage == 100:
+                item += "bg-success"
+            elif str(row.get('end_date')) < str(str(datetime.datetime.today()).split()[0]):
+                item += "bg-secondary"
+            else:
+                item += "bg-primary"
             item += "\" role=\"progressbar\" style=\"width: "
             item += "{0:.2f}".format(percentage)
             item += "%\" aria-valuenow=\""
