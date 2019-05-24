@@ -98,7 +98,7 @@ def get_goals(request):
             cursor2.close()
 
             # Calculate Progression
-            progress
+            progress = ""
             if row.get('type') == 'D':
                 progress = str(distTotal)
                 percentage = distTotal / row.get('distance')
