@@ -116,6 +116,8 @@ def get_logs(request):
 
             result = item + result
 
+    cursor.close()
+
     headers = {'Access-Control-Allow-Origin': '*'}
 
     return (result, 200, headers)

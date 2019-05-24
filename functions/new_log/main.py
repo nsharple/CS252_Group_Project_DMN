@@ -136,6 +136,8 @@ def new_log(request):
     with __get_cursor() as cursor:
         cursor.execute(query)
 
+    cursor.close()
+
     headers = {'Access-Control-Allow-Origin': '*'}
 
     return (query, 200, headers)

@@ -83,6 +83,8 @@ def get_goals(request):
 
                 timeTotal = timeTotal / 3600.0
 
+            cursor2.close()
+
             # Header
             item = "<div class=\"list-group-item list-group-item-action py-0 border-bottom\">"
 
@@ -156,22 +158,9 @@ def get_goals(request):
 
             result = item + result
 
-    if request.method == 'OPTIONS':
-    # Allows GET requests from any origin with the Content-Type
-    # header and caches preflight response for an 3600s
-        headers = {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET',
-            'Access-Control-Allow-Headers': 'Content-Type',
-            'Access-Control-Max-Age': '3600'
-        }
+    cursor.close()
 
-        return ('', 204, headers)
-
-    # Set CORS headers for the main request
-    headers = {
-        'Access-Control-Allow-Origin': '*'
-    }
+    headers = {'Access-Control-Allow-Origin': '*'}
 
     return (result, 200, headers)
 

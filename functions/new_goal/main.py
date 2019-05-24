@@ -179,6 +179,8 @@ def new_goal(request):
     with __get_cursor() as cursor:
         cursor.execute(query)
 
+    cursor.close()
+
     headers = {'Access-Control-Allow-Origin': '*'}
 
     return ("", 200, headers)

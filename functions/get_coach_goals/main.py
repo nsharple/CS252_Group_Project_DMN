@@ -83,6 +83,7 @@ def get_coach_goals(request):
 
                 timeTotal = timeTotal / 3600.0
 
+            cursor2.close()
 
             # Header
             item = "<div class=\"list-group-item list-group-item-action py-0 border-bottom\">"
@@ -156,6 +157,8 @@ def get_coach_goals(request):
             item += "</div></div></div></div></div>"
 
             result = item + result
+
+    cursor.close()
 
     headers = {'Access-Control-Allow-Origin': '*'}
 
