@@ -39,6 +39,10 @@ def __get_cursor():
         return mysql_conn.cursor()
 
 
+def sortByEndDate(goal):
+    return str(goal.get('end_date'))
+
+
 def get_goals(request):
     global mysql_conn
 
@@ -64,11 +68,17 @@ def get_goals(request):
     # Remember to close SQL resources declared while running this function.
     # Keep any declared in global scope (e.g. mysql_conn) for later reuse.
 
+    rowArray = []
     query = "SELECT * FROM goals WHERE email='" + email + "';"
     with __get_cursor() as cursor:
         cursor.execute(query)
         result = ""
         for row in cursor:
+            rowArray.append(row)
+
+        rowArray.sort(key=sortByEndDate)
+
+        for row in rowArray:
 
             # Calculations for progression and percentage
             percentage = 0.0
