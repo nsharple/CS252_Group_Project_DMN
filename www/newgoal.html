@@ -73,7 +73,7 @@
 		var day = dateToday.getDate();
 		var formattedDate = year + "-" + month + "-" + day;
 
-		if (formattedDate < document.getElementById("inputStartDate").value) {
+		if (formattedDate > document.getElementById("inputStartDate").value) {
 			formattedDate = document.getElementById("inputStartDate").value;
 		}
 

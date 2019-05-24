@@ -1,5 +1,7 @@
 from os import getenv
 
+import datetime
+
 import pymysql
 from pymysql.err import OperationalError
 
@@ -86,10 +88,12 @@ def get_goals(request):
             cursor2.close()
 
             # Header
-            item = "<div class=\"list-group-item list-group-item-action py-0 border-bottom\">"
+            item = "<div class=\"list-group-item list-group-item-action py-0 border-bottom\""
+            if str(row.get('end_date')) < str(str(datetime.datetime.today()).split()[0]):
+                item += "style=\"opacity:0.6;\""
 
             # Progression
-            item += "<div class=\"row\"><div class=\"col-md-2 p-4\"><div class=\"align-self-center text-center h1\">"
+            item += "><div class=\"row\"><div class=\"col-md-2 p-4\"><div class=\"align-self-center text-center h1\">"
             if row.get('type') == 'D':
                 item += str(distTotal)
                 percentage = distTotal / row.get('distance')
