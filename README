@@ -12,6 +12,7 @@ Framework - Bootstrap
 Hosting - Google Cloud Platform
 
 To Do:
-1) Fix date restrictions in newlog.html and newgoal.html
-2) Gray out uncompleted goals
-3) Sort entries by date
+1) Fix date restrictions in newlog.html and newgoal.html (new goal must have an end date after or on start date, but needs to have end date only today or after) (no logs set tomorrow or later needs done)
+2) Gray out ONLY uncompleted goals (currently graying out any goal which has an end date before today's date
+3) Fix stupid CORS errors (coach goals gone altogether now???
+4) Check on warning in console on webpage

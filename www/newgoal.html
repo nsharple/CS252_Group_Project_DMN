@@ -77,9 +77,11 @@
 			formattedDate = document.getElementById("inputStartDate").value;
 		}
 
-		console.log(document.getElementById("inputStartDate").value);
+		console.log("inputStartDate: " + document.getElementById("inputStartDate").value);
 
 		document.getElementById("inputEndDate").setAttribute("min", formattedDate);
+
+        console.log("inputEndDate's Min: " + document.getElementById("inputEndDate").getAttribute("min"));
 	}
 
 	function onTypeChange() {
@@ -217,7 +219,7 @@
 </head>
 
 
-<body style="background: url('https://www.toptal.com/designers/subtlepatterns/patterns/qbkls.png')">
+<body style="background: url('https://www.toptal.com/designers/subtlepatterns/patterns/qbkls.png')" onload="getEarliestDate()">
 
 	<!-- Navbar -->
 	<div include-html="navbar_include.html"></div>
@@ -253,7 +255,7 @@
 			</div>
 			<div class="form-group">
 				<label for="inputEndDate">End Date</label>
-				<input type="date" class="form-control" id="inputEndDate" title="Put an end that is no earlier than today or the goal's start date" onclick="getEarliestDate()" required>
+				<input type="date" class="form-control" id="inputEndDate" title="Put an end that is no earlier than today or the goal's start date" required>
 			</div>
 			<div class="form-group">
 				<label for="inputNotes">Notes</label>

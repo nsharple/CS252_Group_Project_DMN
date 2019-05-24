@@ -101,7 +101,7 @@ def get_coach_goals(request):
                 item += "style=\"opacity:0.6; background-color:Gray;\""
 
             # Progression
-            item += "<div class=\"row\"><div class=\"col-md-2 p-4\"><div class=\"align-self-center text-center h1\">"
+            item += "><div class=\"row\"><div class=\"col-md-2 p-4\"><div class=\"align-self-center text-center h1\">"
             if row.get('type') == 'D':
                 item += str(distTotal)
                 percentage = distTotal / row.get('distance')
