@@ -1,5 +1,7 @@
 from os import getenv
 
+import datetime
+
 import pymysql
 from pymysql.err import OperationalError
 
@@ -146,7 +148,7 @@ def get_coach_goals(request):
             item += "%</div></div></div></div>"
 
             # Given To Email
-            item += "<div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">Given To:  </span><span>"
+            item += "<div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">Given To: </span><span>"
             item += row.get('email')
             item += "</span></div>"
 
