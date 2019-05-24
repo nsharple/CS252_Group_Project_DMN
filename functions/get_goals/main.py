@@ -97,24 +97,28 @@ def get_goals(request):
 
             cursor2.close()
 
-            # Header
-            item = "<div class=\"list-group-item list-group-item-action py-0 border-bottom\""
-            if str(row.get('end_date')) < str(str(datetime.datetime.today()).split()[0]):
-                item += "style=\"opacity:0.6; background-color:Gray;\""
-
-            # Progression
-            item += "><div class=\"row\"><div class=\"col-md-2 p-4\"><div class=\"align-self-center text-center h1\">"
+            # Calculate Progression
+            progress
             if row.get('type') == 'D':
-                item += str(distTotal)
+                progress = str(distTotal)
                 percentage = distTotal / row.get('distance')
             elif row.get('type') == 'T':
-                item += "{0:.2f}".format(timeTotal)
+                progress = "{0:.2f}".format(timeTotal)
                 percentage = timeTotal / row.get('time')
             else:
-                item += str(runTotal)
+                progress = str(runTotal)
                 percentage = runTotal / row.get('num_runs')
             percentage = percentage * 100
             percentage = 100.0 if percentage > 100 else percentage
+
+            # Header
+            item = "<div class=\"list-group-item list-group-item-action py-0 border-bottom\""
+            if str(row.get('end_date')) < str(str(datetime.datetime.today()).split()[0]) and percentage < 100.0:
+                item += "style=\"opacity:0.6; background-color:Gray;\""
+
+            # Print Progression
+            item += "><div class=\"row\"><div class=\"col-md-2 p-4\"><div class=\"align-self-center text-center h1\">"
+            item += progress
 
             # Total Goal
             goalLabel = "";

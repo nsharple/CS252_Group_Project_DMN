@@ -4,12 +4,13 @@ Matt Winzeler - mwinzel@purdue.edu
 Nolan Sharpless - nsharple@purdue.edu
 
 RunRecordShare -
-A place to record the times, distances, notes, etc. from your runs and share with other people. Other features
-we could consider include a chat section and forums for Q&A.
+Log runs and set goals. Goals automatically update when new logs are created. Give goals to other people and track their progress under the coach goals tab. Utilizing Google Signin.
 
 Database - MySQL
 Framework - Bootstrap
 Hosting - Google Cloud Platform
+Server - Google Cloud Platform cloud functions utilizing Python
+Client - HTML, Bootstrap CSS, and Javascript
 
 To Do:
 1) Fix date restrictions in newlog.html and newgoal.html (new goal must have an end date after or on start date, but needs to have end date only today or after) (no logs set tomorrow or later needs done)
