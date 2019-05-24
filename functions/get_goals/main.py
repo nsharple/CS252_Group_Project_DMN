@@ -116,7 +116,7 @@ def get_goals(request):
             if str(row.get('end_date')) < str(str(datetime.datetime.today()).split()[0]) and percentage < 100.0:
                 item += "style=\"opacity:0.6; background-color:Gray;\""
             elif percentage == 100:
-                item += "style=\"background-color:Lime;\""
+                item += "style=\"opacity:0.6; background-color:Lime;\""
 
             # Print Progression
             item += "><div class=\"row\"><div class=\"col-md-2 p-4\"><div class=\"align-self-center text-center h1\">"
