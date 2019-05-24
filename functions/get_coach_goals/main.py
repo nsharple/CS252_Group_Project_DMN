@@ -115,7 +115,7 @@ def get_coach_goals(request):
             item = "<div class=\"list-group-item list-group-item-action py-0 border-bottom\""
             if str(row.get('end_date')) < str(str(datetime.datetime.today()).split()[0]) and percentage < 100.0:
                 item += "style=\"opacity:0.6; background-color:Gray;\""
-            elif percentage = 100:
+            elif percentage == 100:
                 item += "style=\"opacity:0.6; background-color:Lime;\""
 
             # Print Progression
