@@ -12,5 +12,3 @@ Hosting - Google Cloud Platform
 Server - Google Cloud Platform cloud functions utilizing Python
 Client - HTML, Bootstrap CSS, and Javascript
 
-To Do:
-1) APPARENTLY, CORS IS STILL AN ISSUE
