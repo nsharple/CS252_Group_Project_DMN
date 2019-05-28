@@ -13,6 +13,5 @@ Server - Google Cloud Platform cloud functions utilizing Python
 Client - HTML, Bootstrap CSS, and Javascript
 
 To Do:
-1) Fix date restrictions in newlog.html and newgoal.html (new goal must have an end date after or on start date, but needs to have end date only today or after) (no logs set tomorrow or later needs done)
-2) Check on warning in console on webpage
-3) APPARENTLY CORS IS STILL AN ISSUE
+1) Check on warning in console on webpage
+2) APPARENTLY, CORS IS STILL AN ISSUE
