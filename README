@@ -13,5 +13,4 @@ Server - Google Cloud Platform cloud functions utilizing Python
 Client - HTML, Bootstrap CSS, and Javascript
 
 To Do:
-1) Check on warning in console on webpage
-2) APPARENTLY, CORS IS STILL AN ISSUE
+1) APPARENTLY, CORS IS STILL AN ISSUE

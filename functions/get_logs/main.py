@@ -87,6 +87,7 @@ def get_logs(request):
         for row in cursor:
             rowArray.append(row)
 
+        cursor.close()
         rowArray.sort(key=sortByDate)
 
         for row in rowArray:
@@ -125,8 +126,6 @@ def get_logs(request):
             item += "</span></div></div></div></div></div>"
 
             result = item + result
-
-    cursor.close()
 
     headers = {'Access-Control-Allow-Origin': '*'}
 

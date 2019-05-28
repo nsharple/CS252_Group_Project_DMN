@@ -76,6 +76,7 @@ def get_coach_goals(request):
         for row in cursor:
             rowArray.append(row)
 
+        cursor.close()
         rowArray.sort(key=sortByEndDate)
 
         for row in rowArray:
@@ -182,8 +183,6 @@ def get_coach_goals(request):
             item += "</div></div></div></div></div>"
 
             result = item + result
-
-    cursor.close()
 
     headers = {'Access-Control-Allow-Origin': '*'}
 
