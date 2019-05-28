@@ -87,7 +87,7 @@ def get_logs(request):
         for row in cursor:
             rowArray.append(row)
 
-        rowArray.sort(key=sortByDate)
+        rowArray.sort(reverse=True, key=sortByDate)
 
         for row in rowArray:
 

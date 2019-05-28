@@ -71,23 +71,19 @@
 		var year = dateToday.getFullYear();
 		var month = dateToday.getMonth() + 1;
 		var day = dateToday.getDate();
-        if (month.length < 2):
+        if (month.toString().length < 2) {
             month = '0' + month;
-        if (day.length < 2):
+		}
+        if (day.toString().length < 2) {
             day = '0' + day;
+		}
 		var formattedDate = year + "-" + month + "-" + day;
 
-		console.log("dateToday: " + formattedDate);
-
-		if (formattedDate > document.getElementById("inputStartDate").value) {
+		if (formattedDate < document.getElementById("inputStartDate").value) {
 			formattedDate = document.getElementById("inputStartDate").value;
 		}
 
-		console.log("inputStartDate: " + document.getElementById("inputStartDate").value);
-
 		document.getElementById("inputEndDate").setAttribute("min", formattedDate);
-
-        console.log("inputEndDate's Min: " + document.getElementById("inputEndDate").getAttribute("min"));
 	}
 
 	function onTypeChange() {
@@ -225,7 +221,7 @@
 </head>
 
 
-<body style="background: url('https://www.toptal.com/designers/subtlepatterns/patterns/qbkls.png')" onload="getEarliestDate()">
+<body style="background: url('https://www.toptal.com/designers/subtlepatterns/patterns/qbkls.png')"> 
 
 	<!-- Navbar -->
 	<div include-html="navbar_include.html"></div>
@@ -261,7 +257,7 @@
 			</div>
 			<div class="form-group">
 				<label for="inputEndDate">End Date</label>
-				<input type="date" class="form-control" id="inputEndDate" title="Put an end that is no earlier than today or the goal's start date" required>
+				<input type="date" class="form-control" id="inputEndDate" title="Put an end that is no earlier than today or the goal's start date" onclick="getEarliestDate()" required>
 			</div>
 			<div class="form-group">
 				<label for="inputNotes">Notes</label>
