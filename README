@@ -14,4 +14,6 @@ Client - HTML, Bootstrap CSS, and Javascript
 
 To Do:
 
+All cloud functions need some fixes with pymysql. I don't think you can have a global connection or cursor possibly. Just need to do some research and rewriting for the cursors.
+
 Incorporate RunRecordShare into Aptiv's self-driving cars for users with treadmills in their vehicles
