@@ -127,6 +127,8 @@ def get_logs(request):
 
             result = item + result
 
+    mysql_conn.close()
+
     headers = {'Access-Control-Allow-Origin': '*'}
 
     return (result, 200, headers)
