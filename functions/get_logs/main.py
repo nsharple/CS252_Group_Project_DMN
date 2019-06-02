@@ -84,7 +84,8 @@ def get_logs(request):
     with __get_cursor() as cursor:
         cursor.execute(query)
         result = ""
-        for row in cursor:
+        rows = cursor.fetchall()
+        for row in rows:
             rowArray.append(row)
 
         cursor.close()
@@ -126,8 +127,6 @@ def get_logs(request):
             item += "</span></div></div></div></div></div>"
 
             result = item + result
-
-    mysql_conn.close()
 
     headers = {'Access-Control-Allow-Origin': '*'}
 
