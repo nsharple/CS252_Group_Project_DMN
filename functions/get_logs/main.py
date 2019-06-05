@@ -81,52 +81,51 @@ def get_logs(request):
 
     rowArray = []
     query = "SELECT * FROM logs WHERE email='" + email + "';"
-    with __get_cursor() as cursor:
-        cursor.execute(query)
-        result = ""
-        rows = cursor.fetchall()
-        for row in rows:
-            rowArray.append(row)
+    cursor = __get_cursor()
+    cursor.execute(query)
+    result = ""
+    for row in rows:
+        rowArray.append(row)
 
-        cursor.close()
-        rowArray.sort(key=sortByDate)
+    cursor.close()
+    rowArray.sort(key=sortByDate)
 
-        for row in rowArray:
+    for row in rowArray:
 
-            # Header
-            item = "<div class=\"list-group-item list-group-item-action py-0 border-bottom\"><div class=\"row\">"
+        # Header
+        item = "<div class=\"list-group-item list-group-item-action py-0 border-bottom\"><div class=\"row\">"
 
-			# Date
-            item += "<div class=\"col-md-2 text-center align-self-center h4 p-4\">"
-            item += str(row["date"])
+        # Date
+        item += "<div class=\"col-md-2 text-center align-self-center h4 p-4\">"
+        item += str(row["date"])
 
-			# Distance
-            item += "</div><div class=\"col border-left\"><div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">Distance: </span><span>"
-            item += str(row.get('distance')) if row.get('distance')  else "-"
+        # Distance
+        item += "</div><div class=\"col border-left\"><div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">Distance: </span><span>"
+        item += str(row.get('distance')) if row.get('distance')  else "-"
 
-			# Time
-            item += "</span></div><div class=\"col p-2 px-3\"><span class=\"h6\">Time: </span><span>"
-            item += str(row.get('time')) if (row.get('time')) else "-"
-            item += "</span>"
+		# Time
+        item += "</span></div><div class=\"col p-2 px-3\"><span class=\"h6\">Time: </span><span>"
+        item += str(row.get('time')) if (row.get('time')) else "-"
+        item += "</span>"
 
-			# Location
-            item += "</div></div><div class=\"row border-bottom\"><div class=\"col p-2 px-3\"><span class=\"h6\">Location: </span><span>"
-            item += row.get('location') if row.get('location') else "-"
+        # Location
+        item += "</div></div><div class=\"row border-bottom\"><div class=\"col p-2 px-3\"><span class=\"h6\">Location: </span><span>"
+        item += row.get('location') if row.get('location') else "-"
 
-			# Additional Notes
-            item += "</span></div></div><div class=\"row\"><div class=\"col p-2 px-3\"><span class=\"h6\">Additional Notes: </span><span>"
-            item += row.get('notes') if row.get('notes') else "-"
-            item += "</span>"
+        # Additional Notes
+        item += "</span></div></div><div class=\"row\"><div class=\"col p-2 px-3\"><span class=\"h6\">Additional Notes: </span><span>"
+        item += row.get('notes') if row.get('notes') else "-"
+        item += "</span>"
 
-            # Delete Button
-            item += "<a class=\"btn btn-dark pull-right bg-danger btn-sm\" role=\"button\" onclick=\"deleteEntry("
-            item += str(row.get('log_id'))
-            item += ", 'log')\"><i class=\"fa fa-times\"></i></a>"
+        # Delete Button
+        item += "<a class=\"btn btn-dark pull-right bg-danger btn-sm\" role=\"button\" onclick=\"deleteEntry("
+        item += str(row.get('log_id'))
+        item += ", 'log')\"><i class=\"fa fa-times\"></i></a>"
 
-			# Rest
-            item += "</span></div></div></div></div></div>"
+	    # Rest
+        item += "</span></div></div></div></div></div>"
 
-            result = item + result
+        result = item + result
 
     headers = {'Access-Control-Allow-Origin': '*'}
 
