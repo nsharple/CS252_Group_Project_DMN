@@ -65,7 +65,7 @@
     	    }
 	    }
 
-        xhttp.open("GET", "https://us-east1-runrecordshare.cloudfunctions.net/get-logs?email=" + email, true);
+        xhttp.open("GET", "https://us-east1-runrecordshare.cloudfunctions.net/get-logs?email=" + email, false);
         xhttp.send();
 
 	}
@@ -88,7 +88,7 @@
     	    }
 	    }
 
-        xhttp.open("GET", "https://us-east1-runrecordshare.cloudfunctions.net/get-goals?email=" + email, true);
+        xhttp.open("GET", "https://us-east1-runrecordshare.cloudfunctions.net/get-goals?email=" + email, false);
         xhttp.send();
 
 	}
@@ -111,7 +111,7 @@
     	    }
 	    }
 
-        xhttp.open("GET", "https://us-east1-runrecordshare.cloudfunctions.net/get-coach-goals?email=" + email, true);
+        xhttp.open("GET", "https://us-east1-runrecordshare.cloudfunctions.net/get-coach-goals?email=" + email, false);
         xhttp.send();
 
 	}
@@ -151,7 +151,7 @@
 
 		var xhttp;
 		xhttp = new XMLHttpRequest();
-        xhttp.open("GET", request, true);
+        xhttp.open("GET", request, false);
         xhttp.send();
 
 		location.replace("https://runrecordshare.appspot.com");

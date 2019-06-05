@@ -84,7 +84,7 @@ def get_logs(request):
     cursor = __get_cursor()
     cursor.execute(query)
     result = ""
-    for row in rows:
+    for row in cursor:
         rowArray.append(row)
 
     cursor.close()
