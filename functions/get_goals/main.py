@@ -72,117 +72,116 @@ def get_goals(request):
     query = "SELECT * FROM goals WHERE email='" + email + "';"
     with __get_cursor() as cursor:
         cursor.execute(query)
-        result = ""
         for row in cursor:
             rowArray.append(row)
 
-        cursor.close()
-        rowArray.sort(key=sortByEndDate)
+    cursor.close()
+    rowArray.sort(key=sortByEndDate)
 
-        for row in rowArray:
+    result = ""
+    for row in rowArray:
 
-            # Calculations for progression and percentage
-            percentage = 0.0
-            distTotal = 0.0
-            timeTotal = 0.0
-            runTotal = 0
-            query2 = "SELECT * FROM logs WHERE email='" + email + "' AND date>='" + str(row.get('start_date')) + "' AND date<='" + str(row.get('end_date')) + "';"
-            with __get_cursor() as cursor2:
-                cursor2.execute(query2)
-                for row2 in cursor2:
-                    distTotal += row2.get('distance') if row2.get('distance') else 0
-                    timeTotal += row2.get('time').total_seconds() if row2.get('time') else 0
-                    runTotal += 1
+        # Calculations for progression and percentage
+        percentage = 0.0
+        distTotal = 0.0
+        timeTotal = 0.0
+        runTotal = 0
+        query2 = "SELECT * FROM logs WHERE email='" + email + "' AND date>='" + str(row.get('start_date')) + "' AND date<='" + str(row.get('end_date')) + "';"
+        with __get_cursor() as cursor2:
+            cursor2.execute(query2)
+            for row2 in cursor2:
+                distTotal += row2.get('distance') if row2.get('distance') else 0
+                timeTotal += row2.get('time').total_seconds() if row2.get('time') else 0
+                runTotal += 1
 
-                timeTotal = timeTotal / 3600.0
+        cursor2.close()
 
-            cursor2.close()
+        timeTotal = timeTotal / 3600.0
 
-            # Calculate Progression
-            progress = ""
-            if row.get('type') == 'D':
-                progress = str(distTotal)
-                percentage = distTotal / row.get('distance')
-            elif row.get('type') == 'T':
-                progress = "{0:.2f}".format(timeTotal)
-                percentage = timeTotal / row.get('time')
-            else:
-                progress = str(runTotal)
-                percentage = runTotal / row.get('num_runs')
-            percentage = percentage * 100
-            percentage = 100.0 if percentage > 100 else percentage
+        # Calculate Progression
+        progress = ""
+        if row.get('type') == 'D':
+            progress = str(distTotal)
+            percentage = distTotal / row.get('distance')
+        elif row.get('type') == 'T':
+            progress = "{0:.2f}".format(timeTotal)
+            percentage = timeTotal / row.get('time')
+        else:
+            progress = str(runTotal)
+            percentage = runTotal / row.get('num_runs')
+        percentage = percentage * 100
+        percentage = 100.0 if percentage > 100 else percentage
 
-            # Header
-            item = "<div class=\"list-group-item list-group-item-action py-0 border-bottom\""
-            if str(row.get('end_date')) < str(str(datetime.datetime.today()).split()[0]) and percentage < 100.0:
-                item += "style=\"opacity:0.6; background-color:Gray;\""
-            elif percentage == 100:
-                item += "style=\"opacity:0.6; background-color:Lime;\""
+        # Header
+        item = "<div class=\"list-group-item list-group-item-action py-0 border-bottom\""
+        if str(row.get('end_date')) < str(str(datetime.datetime.today()).split()[0]) and percentage < 100.0:
+            item += "style=\"opacity:0.6; background-color:Gray;\""
+        elif percentage == 100:
+            item += "style=\"opacity:0.6; background-color:Lime;\""
+        # Print Progression
+        item += "><div class=\"row\"><div class=\"col-md-2 p-4\"><div class=\"align-self-center text-center h1\">"
+        item += progress
 
-            # Print Progression
-            item += "><div class=\"row\"><div class=\"col-md-2 p-4\"><div class=\"align-self-center text-center h1\">"
-            item += progress
+        # Total Goal
+        goalLabel = "";
+        item += "</div><div class=\"align-self-center text-center h6\">out of "
+        if row.get('type') == 'D':
+            item += str(row.get('distance'))
+            goalLabel = " miles"
+        elif row.get('type') == 'T':
+            item += str(row.get('time'))
+            goalLabel = " hours"
+        else:
+            item += str(row.get('num_runs'))
+            goalLabel = " runs"
+        item += goalLabel
 
-            # Total Goal
-            goalLabel = "";
-            item += "</div><div class=\"align-self-center text-center h6\">out of "
-            if row.get('type') == 'D':
-                item += str(row.get('distance'))
-                goalLabel = " miles"
-            elif row.get('type') == 'T':
-                item += str(row.get('time'))
-                goalLabel = " hours"
-            else:
-                item += str(row.get('num_runs'))
-                goalLabel = " runs"
-            item += goalLabel
+        # Progress Bar
+        item += "</div></div><div class=\"col border-left\"><div class=\"row border-bottom\"><div class=\"col p-2 px-3\"><div class=\"progress\">"
+        item += "<div class=\"progress-bar progress-bar-striped "
+        if percentage == 100:
+            item += "bg-success"
+        elif str(row.get('end_date')) < str(str(datetime.datetime.today()).split()[0]):
+            item += "bg-secondary"
+        else:
+            item += "bg-primary"
+        item += "\" role=\"progressbar\" style=\"width: "
+        item += "{0:.2f}".format(percentage)
+        item += "%\" aria-valuenow=\""
+        item += "{0:.2f}".format(percentage)
+        item += "\" aria-valuemin=\"0\" aria-valuemax=\"100\">"
+        item += "{0:.2f}".format(percentage)
+        item += "%</div></div></div></div>"
 
-            # Progress Bar
-            item += "</div></div><div class=\"col border-left\"><div class=\"row border-bottom\"><div class=\"col p-2 px-3\"><div class=\"progress\">"
-            item += "<div class=\"progress-bar progress-bar-striped "
-            if percentage == 100:
-                item += "bg-success"
-            elif str(row.get('end_date')) < str(str(datetime.datetime.today()).split()[0]):
-                item += "bg-secondary"
-            else:
-                item += "bg-primary"
-            item += "\" role=\"progressbar\" style=\"width: "
-            item += "{0:.2f}".format(percentage)
-            item += "%\" aria-valuenow=\""
-            item += "{0:.2f}".format(percentage)
-            item += "\" aria-valuemin=\"0\" aria-valuemax=\"100\">"
-            item += "{0:.2f}".format(percentage)
-            item += "%</div></div></div></div>"
+        # Coach Email
+        item += "<div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">Given by: </span><span>"
+        item += row.get('coach_email') if row.get('coach_email') else "Yourself"
+        item += "</span></div>"
 
-            # Coach Email
-            item += "<div class=\"row border-bottom\"><div class=\"border-right p-2 px-3\"><span class=\"h6\">Given by: </span><span>"
-            item += row.get('coach_email') if row.get('coach_email') else "Yourself"
-            item += "</span></div>"
+        # Start Date
+        item += "<div class=\"border-right p-2 px-3\"><span class=\"h6\">From: </span><span>"
+        item += str(row.get('start_date'))
+        item += "</span></div>"
 
-            # Start Date
-            item += "<div class=\"border-right p-2 px-3\"><span class=\"h6\">From: </span><span>"
-            item += str(row.get('start_date'))
-            item += "</span></div>"
+        # End Date
+        item += "<div class=\"p-2 px-3\"><span class=\"h6\">To: </span><span>"
+        item += str(row.get('end_date'))
+        item += "</span></div></div>"
 
-            # End Date
-            item += "<div class=\"p-2 px-3\"><span class=\"h6\">To: </span><span>"
-            item += str(row.get('end_date'))
-            item += "</span></div></div>"
+        # Additional Notes
+        item += "<div class=\"row\"><div class=\"col p-2 px-3\"><span class=\"h6\">Additional Notes: </span><span>"
+        item += row.get('notes') if row.get('notes') else "-"
+        item += "</span>"
 
-            # Additional Notes
-            item += "<div class=\"row\"><div class=\"col p-2 px-3\"><span class=\"h6\">Additional Notes: </span><span>"
-            item += row.get('notes') if row.get('notes') else "-"
-            item += "</span>"
+        # Delete Button
+        item += "<a class=\"btn btn-dark pull-right bg-danger btn-sm\" role=\"button\" onclick=\"deleteEntry("
+        item += str(row.get('goal_id'))
+        item += ", 'goal')\"><i class=\"fa fa-times\"></i></a>"
 
-            # Delete Button
-            item += "<a class=\"btn btn-dark pull-right bg-danger btn-sm\" role=\"button\" onclick=\"deleteEntry("
-            item += str(row.get('goal_id'))
-            item += ", 'goal')\"><i class=\"fa fa-times\"></i></a>"
+        # Finish
+        item += "</div></div></div></div></div>"
 
-            # Finish
-            item += "</div></div></div></div></div>"
-
-            result = item + result
+        result = item + result
 
     headers = {'Access-Control-Allow-Origin': '*'}
 
