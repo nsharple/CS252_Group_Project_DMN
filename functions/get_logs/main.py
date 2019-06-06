@@ -81,15 +81,15 @@ def get_logs(request):
 
     rowArray = []
     query = "SELECT * FROM logs WHERE email='" + email + "';"
-    cursor = __get_cursor()
-    cursor.execute(query)
-    result = ""
-    for row in cursor:
-        rowArray.append(row)
+    with __get_cursor() as cursor:
+        cursor.execute(query)
+        for row in cursor:
+            rowArray.append(row)
 
     cursor.close()
     rowArray.sort(key=sortByDate)
 
+    result = ""
     for row in rowArray:
 
         # Header
